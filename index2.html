@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>📖 Mijn Receptenoverzicht</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.5em;
+      margin-bottom: 1rem;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      background: white;
+      margin: 0.5rem 0;
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+    }
+    li a {
+      text-decoration: none;
+      color: #007acc;
+      font-size: 1.2em;
+      margin-left: 0.5rem;
+    }
+    li:hover {
+      background-color: #eef6fb;
+    }
+  </style>
+</head>
+<body>
+  <h1>📖 Mijn Recepten</h1>
+  <ul id="recipe-list"></ul>
+
+  <script>
+    fetch('recipes.json')
+      .then(response => response.json())
+      .then(data => {
+        const list = document.getElementById('recipe-list');
+        data.forEach(recipe => {
+          const li = document.createElement('li');
+          const a = document.createElement('a');
+          a.href = recipe.file;
+          a.textContent = `${recipe.emoji || '🍽️'} ${recipe.title}`;
+          li.appendChild(document.createTextNode(recipe.emoji || '🍽️'));
+          li.appendChild(a);
+          list.appendChild(li);
+        });
+      })
+      .catch(err => {
+        document.getElementById('recipe-list').innerHTML = '<li>Kon recepten niet laden.</li>';
+        console.error(err);
+      });
+  </script>
+</body>
+</html>
