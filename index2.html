@@ -48,23 +48,22 @@
 
   <script>
     fetch('recipes.json')
-      .then(response => response.json())
-      .then(data => {
-        const list = document.getElementById('recipe-list');
-        data.forEach(recipe => {
-          const li = document.createElement('li');
-          const a = document.createElement('a');
-          a.href = recipe.file;
-          a.textContent = `${recipe.emoji || '🍽️'} ${recipe.title}`;
-          li.appendChild(document.createTextNode(recipe.emoji || '🍽️'));
-          li.appendChild(a);
-          list.appendChild(li);
-        });
-      })
-      .catch(err => {
-        document.getElementById('recipe-list').innerHTML = '<li>Kon recepten niet laden.</li>';
-        console.error(err);
-      });
+  .then(response => response.json())
+  .then(data => {
+    const list = document.getElementById('recipe-list');
+    data.forEach(recipe => {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = recipe.file;
+      a.textContent = `${recipe.emoji || '🍽️'} ${recipe.title}`;
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+  })
+  .catch(err => {
+    document.getElementById('recipe-list').innerHTML = '<li>Kon recepten niet laden.</li>';
+    console.error(err);
+  });
   </script>
 </body>
 </html>
