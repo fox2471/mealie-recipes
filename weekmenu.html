@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Keto Weekmenu – Overzicht (±1600 kcal/dag)</title>
+  <style>
+    :root{
+      --bg: #0f172a;          /* slate-900 */
+      --card: #111827;        /* gray-900 */
+      --muted:#94a3b8;        /* slate-400 */
+      --text:#e5e7eb;         /* gray-200 */
+      --accent:#22d3ee;       /* cyan-400 */
+      --chip:#0ea5e9;         /* sky-500 */
+      --ok:#34d399;           /* emerald-400 */
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 16px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 800px at 20% -10%, rgba(34,211,238,.15), transparent 60%),
+                  radial-gradient(900px 700px at 120% 20%, rgba(14,165,233,.12), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
+    header{
+      max-width:1100px;
+      margin:32px auto 20px;
+      padding:0 20px;
+    }
+    .title{
+      font-size:clamp(26px, 4vw, 40px);
+      line-height:1.15;
+      font-weight:800;
+      letter-spacing:.3px;
+      margin:0 0 10px;
+    }
+    .subtitle{
+      color:var(--muted);
+      font-size:clamp(14px, 2vw, 18px);
+      margin:6px 0 0;
+    }
+    .pillbar{
+      display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08);
+      padding:8px 12px; border-radius:999px;
+      font-size:14px; color:#dbeafe;
+    }
+    .pill .dot{width:8px;height:8px;border-radius:50%;background:var(--ok); display:inline-block}
+    main{
+      max-width:1100px;
+      margin:18px auto 40px;
+      padding:0 20px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(1,minmax(0,1fr));
+      gap:18px;
+    }
+    @media (min-width:720px){
+      .grid{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+    }
+    @media (min-width:1040px){
+      .grid{ grid-template-columns:repeat(3,minmax(0,1fr)); }
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:var(--shadow);
+      border-radius:var(--radius);
+      overflow:hidden;
+    }
+    .card .top{
+      padding:16px 18px 8px;
+      display:flex; align-items:center; justify-content:space-between; gap:8px;
+    }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(34,211,238,.12);
+      color:#a5f3fc;
+      border:1px solid rgba(34,211,238,.25);
+      padding:6px 10px; border-radius:12px; font-size:13px;
+    }
+    .day{
+      font-weight:800;
+      font-size:18px;
+      letter-spacing:.3px;
+    }
+    .kcal{
+      font-size:13px; color:var(--muted);
+    }
+    .meals{ padding:8px 18px 16px; }
+    .meal{
+      display:flex; align-items:flex-start; gap:10px;
+      padding:10px 0; border-bottom:1px dashed rgba(255,255,255,.08);
+    }
+    .meal:last-child{ border-bottom:none; }
+    .meal .icon{
+      width:28px; height:28px; border-radius:10px;
+      background:rgba(14,165,233,.15);
+      display:inline-grid; place-items:center;
+      font-size:16px;
+    }
+    .meal .name{ font-weight:600; }
+    .meal .desc{ color:var(--muted); font-size:14px; margin-top:2px; }
+    .actions{
+      padding:12px 18px 18px; display:flex; gap:10px; flex-wrap:wrap;
+    }
+    .btn{
+      border:none; cursor:pointer; text-decoration:none;
+      display:inline-flex; align-items:center; gap:10px;
+      background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
+      border:1px solid rgba(255,255,255,.12);
+      padding:10px 14px; border-radius:12px; color:var(--text); font-weight:600;
+      transition: transform .08s ease, box-shadow .2s ease;
+    }
+    .btn:hover{ transform:translateY(-1px); box-shadow:0 8px 20px rgba(0,0,0,.25); }
+    .btn.accent{
+      background:linear-gradient(180deg, rgba(34,211,238,.25), rgba(34,211,238,.15));
+      border-color: rgba(34,211,238,.4);
+      color:#e0f2fe;
+    }
+    footer{
+      max-width:1100px; margin:10px auto 60px; padding:0 20px; color:var(--muted); font-size:14px;
+    }
+    .legend{ display:flex; gap:12px; flex-wrap:wrap; margin-top:10px }
+    .chip{
+      display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px;
+      background:rgba(14,165,233,.12); border:1px solid rgba(14,165,233,.25); color:#bae6fd; font-size:13px;
+    }
+    .chip.k{ background:rgba(14,165,233,.12); border-color:rgba(14,165,233,.25) }
+    .chip.p{ background:rgba(52,211,153,.12); border-color:rgba(52,211,153,.25) }
+    .chip.f{ background:rgba(250,204,21,.12); border-color:rgba(250,204,21,.25) }
+    .small{ font-size:12px; color:var(--muted) }
+    @media print{
+      header, footer{ color:#000 }
+      body{ background:#fff; color:#000 }
+      .card{ break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 class="title">Keto Weekmenu – Overzicht</h1>
+    <p class="subtitle">7 dagen eenvoudige, suikervrije & koolhydraatarme maaltijden. Doel: <strong>±1600 kcal/dag</strong>.</p>
+    <div class="pillbar">
+      <span class="pill"><span class="dot"></span> Onder 20 g netto koolhydraten/dag</span>
+      <span class="pill">Focus op eiwit (±110–130 g)</span>
+      <span class="pill">Eenvoudig te bereiden</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="grid">
+
+      <!-- Dag 1 -->
+      <article class="card">
+        <div class="top">
+          <div>
+            <div class="day">Dag 1</div>
+            <div class="kcal">Totaal ~1600 kcal</div>
+          </div>
+          <span class="badge">Start sterk 💪</span>
+        </div>
+        <div class="meals">
+          <div class="meal">
+            <div class="icon">🍳</div>
+            <div>
+              <div class="name">Ontbijt</div>
+              <div class="desc">3 eieren in boter, 30 g kaas, 50 g avocado (~450 kcal)</div>
+            </div>
+          </div>
+          <div class="meal">
+            <div class="icon">🥗</div>
+            <div>
+              <div class="name">Lunch</div>
+              <div class="desc">150 g kipfilet + salade, 15 g olijfolie (~400 kcal)</div>
+            </div>
+          </div>
+          <div class="meal">
+            <div class="icon">🧀</div>
+            <div>
+              <div class="name">Snack</div>
+              <div class="desc">30 g walnoten (~200 kcal)</div>
+            </div>
+          </div>
+          <div class="meal">
+            <div class="icon">🍣</div>
+            <div>
+              <div class="name">Avond</div>
+              <div class="desc">150 g zalm + 150 g courgette in olie, 50 g roomkaas (~550 kcal)</div>
+            </div>
+          </div>
+        </div>
+        <div class="actions">
+          <a class="btn accent" href="Dag1.html">Open dagpagina</a>
+          <a class="btn" href="#boodschappen">Naar boodschappenlijst</a>
+        </div>
+      </article>
+
+      <!-- Dag 2 -->
+      <article class="card">
+        <div class="top">
+          <div>
+            <div class="day">Dag 2</div>
+            <div class="kcal">Totaal ~1600 kcal</div>
+          </div>
+          <span class="badge">Proteïne focus 🏋️</span>
+        </div>
+        <div class="meals">
+          <div class="meal"><div class="icon">🍳</div><div><div class="name">Ontbijt</div><div class="desc">Omelet (3 eieren, champignons, 20 g kaas) (~420 kcal)</div></div></div>
+          <div class="meal"><div class="icon">🥗</div><div><div class="name">Lunch</div><div class="desc">150 g tonijn + 20 g mayo, komkommer (~380 kcal)</div></div></div>
+          <div class="meal"><div class="icon">🥜</div><div><div class="name">Snack</div><div class="desc">30 g macadamia (~220 kcal)</div></div></div>
+          <div class="meal"><div class="icon">🥩</div><div><div class="name">Avond</div><div class="desc">180 g biefstuk + 200 g broccoli in boter (~580 kcal)</div></div></div>
+        </div>
+        <div class="actions">
+          <a class="btn accent" href="Dag2.html">Open dagpagina</a>
+          <a class="btn" href="#boodschappen">Naar boodschappenlijst</a>
+        </div>
+      </article>
+
+      <!-- Dag 3 -->
+      <article class="card">
+        <div class="top">
+          <div>
+            <div class="day">Dag 3</div>
+            <div class="kcal">Totaal ~1600 kcal</div>
+          </div>
+          <span class="badge">Vette vis 🐟</span>
+        </div>
+        <div class="meals">
+          <div class="meal"><div class="icon">🥚</div><div><div class="name">Ontbijt</div><div class="desc">2 eieren, 40 g brie, 50 g avocado (~400 kcal)</div></div></div>
+          <div class="meal"><div class="icon">🥗</div><div><div class="name">Lunch</div><div class="desc">150 g kalkoenfilet + salade, 15 g olijfolie (~380 kcal)</div></div></div>
+          <div class="meal"><div class="icon">🫘</div><div><div class="name">Snack</div><div class="desc">30 g amandelen (~180 kcal)</div></div></div>
+          <div class="meal"><div class="icon">🍣</div><div><div class="name">Avond</div><div class="desc">150 g zalm + 150 g spinazie in boter, 50 g roomkaas (~640 kcal)</div></div></div>
+        </div>
+        <div class="actions">
+          <a class="btn accent" href="Dag3.html">Open dagpagina</a>
+          <a class="btn" href="#boodschappen">Naar boodschappenlijst</a>
+        </div>
+      </article>
+
+      <!-- Dag 4 -->
+      <article class="card">
+        <div class="top">
+          <div>
+            <div class="day">Dag 4</div>
+            <div class="kcal">Totaal ~1600 kcal</div>
+          </div>
+          <span class="badge">Low-carb classic 🧀</span>
+        </div>
+        <div class="meals">
+          <div class="meal"><div class="icon">🍳</div><div><div class="name">Ontbijt</div><div class="desc">Omelet (3 eieren, 30 g kaas, spinazie) (~420 kcal)</div></div></div>
+          <div class="meal"><div class="icon">🍖</div><div><div class="name">Lunch</div><div class="desc">150 g rundergehaktballetjes + courgettenoedels in olijfolie (~400 kcal)</div></div></div>
+          <div class="meal"><div class="icon">🧀</div><div><div class="name">Snack</div><div class="desc">25 g walnoten + 25 g kaasblokjes (~210 kcal)</div></div></div>
+          <div class="meal"><div class="icon">🍗</div><div><div class="name">Avond</div><div class="desc">150 g kipfilet + 200 g bloemkoolrijst in boter (~570 kcal)</div></div></div>
+        </div>
+        <div class="actions">
+          <a class="btn accent" href="Dag4.html">Open dagpagina</a>
+          <a class="btn" href="#boodschappen">Naar boodschappenlijst</a>
+        </div>
+      </article>
+
+      <!-- Dag 5 -->
+      <article class="card">
+        <div class="top">
+          <div>
+            <div class="day">Dag 5</div>
+            <div class="kcal">Totaal ~1600 kcal</div>
+          </div>
+          <span class="badge">Simpel & snel ⏱️</span>
+        </div>
+        <div class="meals">
+          <div class="meal"><div class="icon">🍳</div><div><div class="name">Ontbijt</div><div class="desc">2 eieren roerei, 30 g kaas, 50 g avocado (~390 kcal)</div></div></div>
+          <div class="meal"><div class="icon">🐟</div><div><div class="name">Lunch</div><div class="desc">120 g gerookte zalm, 50 g avocado, veldsla (~400 kcal)</div></div></div>
+          <div class="meal"><div class="icon">🥜</div><div><div class="name">Snack</div><div class="desc">30 g macadamia (~220 kcal)</div></div></div>
+          <div class="meal"><div class="icon">🐖</div><div><div class="name">Avond</div><div class="desc">150 g varkenshaasje + 200 g spruitjes in boter (~590 kcal)</div></div></div>
+        </div>
+        <div class="actions">
+          <a class="btn accent" href="Dag5.html">Open dagpagina</a>
+          <a class="btn" href="#boodschappen">Naar boodschappenlijst</a>
+        </div>
+      </article>
+
+      <!-- Dag 6 -->
+      <article class="card">
+        <div class="top">
+          <div>
+            <div class="day">Dag 6</div>
+            <div class="kcal">Totaal ~1600 kcal</div>
+          </div>
+          <span class="badge">Weekend vibes 🎉</span>
+        </div>
+        <div class="meals">
+          <div class="meal"><div class="icon">🍳</div><div><div class="name">Ontbijt</div><div class="desc">Omelet (3 eieren, spekreepjes, 20 g kaas) (~440 kcal)</div></div></div>
+          <div class="meal"><div class="icon">🐟</div><div><div class="name">Lunch</div><div class="desc">150 g sardientjes in olie + komkommer, 10 g olijfolie (~380 kcal)</div></div></div>
+          <div class="meal"><div class="icon">🧀</div><div><div class="name">Snack</div><div class="desc">30 g brie (~120 kcal)</div></div></div>
+          <div class="meal"><div class="icon">🥩</div><div><div class="name">Avond</div><div class="desc">150 g lamskoteletten + 200 g courgette in boter (~650 kcal)</div></div></div>
+        </div>
+        <div class="actions">
+          <a class="btn accent" href="Dag6.html">Open dagpagina</a>
+          <a class="btn" href="#boodschappen">Naar boodschappenlijst</a>
+        </div>
+      </article>
+
+      <!-- Dag 7 -->
+      <article class="card">
+        <div class="top">
+          <div>
+            <div class="day">Dag 7</div>
+            <div class="kcal">Totaal ~1600 kcal</div>
+          </div>
+          <span class="badge">Afsluiten met vis 🐟</span>
+        </div>
+        <div class="meals">
+          <div class="meal"><div class="icon">🥚</div><div><div class="name">Ontbijt</div><div class="desc">2 eieren + 40 g roomkaas + 50 g avocado (~390 kcal)</div></div></div>
+          <div class="meal"><div class="icon">🍗</div><div><div class="name">Lunch</div><div class="desc">150 g kipfilet + salade, 15 g olijfolie (~400 kcal)</div></div></div>
+          <div class="meal"><div class="icon">🥜</div><div><div class="name">Snack</div><div class="desc">30 g walnoten (~200 kcal)</div></div></div>
+          <div class="meal"><div class="icon">🍣</div><div><div class="name">Avond</div><div class="desc">150 g zalm + 200 g spinazie in boter + 30 g kaas (~610 kcal)</div></div></div>
+        </div>
+        <div class="actions">
+          <a class="btn accent" href="Dag7.html">Open dagpagina</a>
+          <a class="btn" href="#boodschappen">Naar boodschappenlijst</a>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- Boodschappenlijst (samengevat) -->
+    <section id="boodschappen" style="margin-top:32px">
+      <h2 style="font-size:22px; margin:0 0 6px">Samengevatte boodschappenlijst</h2>
+      <p class="small">Voor 1 persoon – gebaseerd op de bovenstaande 7 dagen. Rond af op verpakkingseenheden.</p>
+      <div class="legend">
+        <span class="chip k">Groenten & avocado</span>
+        <span class="chip p">Eiwitbronnen</span>
+        <span class="chip f">Vetten & extra's</span>
+      </div>
+      <ul style="margin:14px 0 0 18px; padding:0; columns: 2; gap: 30px">
+        <li>🥑 Avocado ~ <strong>5–6 stuks</strong></li>
+        <li>🥒 Komkommer ~ <strong>3 stuks</strong></li>
+        <li>🥬 Sla/veldsla ~ <strong>3 zakken</strong></li>
+        <li>🥦 Broccoli ~ <strong>2 stronken</strong></li>
+        <li>🥬 Spinazie ~ <strong>600–700 g</strong></li>
+        <li>🥒 Courgette ~ <strong>5–6 stuks</strong></li>
+        <li>🥚 Eieren ~ <strong>24–28 stuks</strong></li>
+        <li>🍗 Kipfilet ~ <strong>1.2–1.3 kg</strong></li>
+        <li>🥩 Biefstuk/lams ~ <strong>700–800 g</strong></li>
+        <li>🐟 Zalm/gerookte zalm ~ <strong>1.2–1.4 kg</strong></li>
+        <li>🐟 Tonijn/sardientjes ~ <strong>4–6 blikjes</strong></li>
+        <li>🐖 Varkenshaasje ~ <strong>150–300 g</strong></li>
+        <li>🧀 Kaas/roomkaas ~ <strong>400–500 g</strong></li>
+        <li>🥜 Noten (walnoot/macadamia/amandel) ~ <strong>250–300 g</strong></li>
+        <li>🧈 Boter/olijfolie ~ <strong>1 pak + 1 fles</strong></li>
+        <li>🍋 Citroen, kruiden, zout, peper</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <div>Tip: klik op <em>Open dagpagina</em> om een detailpagina per dag te gebruiken (Mealie-stijl). Wil je dat ik ze voor je genereer?</div>
+  </footer>
+</body>
+</html>
