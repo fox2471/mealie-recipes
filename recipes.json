@@ -84,10 +84,15 @@
   "file": "kip-katsu-linguine-groenten.html",
   "emoji": "🍜"
   },
-    {
-  "title": ">Runds Gyros met Tzatziki",
+  {
+  "title": "Runds Gyros met Tzatziki",
   "file": "RundsGyros.html",
   "emoji": "🥩"
+  },
+  {
+  "title": "Rijst Bowl met Kip en Groenten",
+  "file": "rijstbowl.html",
+  "emoji": "🍗"
   },
   {
     "title": "Keto Weekmenu (1600 kcal)",
