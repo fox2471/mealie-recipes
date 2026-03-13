@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vetverbrandende Groentesoep</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Vetverbrandende Groentesoep",
+    "image": "https://fox2471.github.io/mealie-recipes/images/vetverbrandende-groentesoep.jpg",
+    "author": {
+      "@type": "Person",
+      "name": "ChatGPT"
+    },
+    "description": "Lichte, vezelrijke groentesoep met witte kool, wortel, paprika en selder. Perfect als vullende maaltijd of caloriearme lunch tijdens gewichtsverlies.",
+    "recipeCategory": "Soep",
+    "recipeCuisine": "Gezond",
+    "prepTime": "PT15M",
+    "cookTime": "PT25M",
+    "totalTime": "PT40M",
+    "recipeYield": "6 porties",
+    "keywords": "dieetsoep, groentesoep, vetverlies, caloriearm, meal prep, gezond",
+    "nutrition": {
+      "@type": "NutritionInformation",
+      "calories": "70 kcal",
+      "proteinContent": "3 g",
+      "carbohydrateContent": "14 g",
+      "fatContent": "0.5 g",
+      "fiberContent": "4 g"
+    },
+    "recipeIngredient": [
+      "500 g witte kool",
+      "200 g wortelen",
+      "150 g paprika",
+      "120 g selder",
+      "150 g ui",
+      "400 g tomatenblokjes (blik)",
+      "1.5 liter groentebouillon",
+      "1 tl paprikapoeder",
+      "Peper en zout naar smaak",
+      "Chili flakes naar smaak (optioneel)"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "text": "Snijd de witte kool fijn en snijd wortelen, paprika, selder en ui in kleine stukjes."
+      },
+      {
+        "@type": "HowToStep",
+        "text": "Fruit de ui kort in een grote soeppot met een klein scheutje water of wat bouillon."
+      },
+      {
+        "@type": "HowToStep",
+        "text": "Voeg de overige groenten toe en laat 3 tot 4 minuten mee garen."
+      },
+      {
+        "@type": "HowToStep",
+        "text": "Voeg de tomatenblokjes en groentebouillon toe."
+      },
+      {
+        "@type": "HowToStep",
+        "text": "Kruid met paprikapoeder, peper, zout en eventueel chili flakes."
+      },
+      {
+        "@type": "HowToStep",
+        "text": "Laat 20 tot 25 minuten zacht koken tot alle groenten gaar zijn."
+      },
+      {
+        "@type": "HowToStep",
+        "text": "Serveer warm of bewaar in porties voor meal prep."
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <h1>🥣 Vetverbrandende Groentesoep</h1>
+  <p><strong>Porties:</strong> 6</p>
+  <p><strong>Bereidingstijd:</strong> 40 minuten</p>
+
+  <h2>Ingrediënten</h2>
+  <ul>
+    <li>500 g witte kool</li>
+    <li>200 g wortelen</li>
+    <li>150 g paprika</li>
+    <li>120 g selder</li>
+    <li>150 g ui</li>
+    <li>400 g tomatenblokjes (blik)</li>
+    <li>1,5 liter groentebouillon</li>
+    <li>1 tl paprikapoeder</li>
+    <li>peper en zout</li>
+    <li>chili flakes (optioneel)</li>
+  </ul>
+
+  <h2>Bereiding</h2>
+  <ol>
+    <li>Snijd de witte kool fijn en snijd wortelen, paprika, selder en ui in kleine stukjes.</li>
+    <li>Fruit de ui kort in een grote soeppot met een klein scheutje water of wat bouillon.</li>
+    <li>Voeg de overige groenten toe en laat 3 à 4 minuten mee garen.</li>
+    <li>Voeg de tomatenblokjes en groentebouillon toe.</li>
+    <li>Kruid met paprikapoeder, peper, zout en eventueel chili flakes.</li>
+    <li>Laat 20 à 25 minuten zacht koken tot alle groenten gaar zijn.</li>
+    <li>Serveer warm of verdeel in porties voor later.</li>
+  </ol>
+
+  <h2>Voedingswaarde per portie</h2>
+  <ul>
+    <li>🔥 70 kcal</li>
+    <li>💪 3 g eiwit</li>
+    <li>🌾 14 g koolhydraten</li>
+    <li>🥄 0,5 g vet</li>
+    <li>🥬 4 g vezels</li>
+  </ul>
+
+  <h2>Waarom dit werkt in een dieet</h2>
+  <p>
+    Deze soep is volumineus, vezelrijk en caloriearm. Daardoor is ze ideaal als lichte lunch,
+    vullend voorgerecht of meal prep-recept tijdens vetverlies.
+  </p>
+</body>
+</html>
