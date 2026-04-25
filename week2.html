@@ -3,786 +3,408 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Weekplan — 1600 kcal</title>
+<title>Weekplan Week 2 — 1600 kcal</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #F7F4EF;
-    --surface: #FFFFFF;
-    --border: #E2DDD6;
-    --text: #1A1714;
-    --muted: #7A7570;
-    --accent: #2D6A4F;
-    --accent-light: #E8F3EE;
-    --accent2: #B5451B;
-    --accent2-light: #FAEEE9;
-    --yellow: #F2A93B;
-    --yellow-light: #FEF5E7;
-    --blue: #2B6CB0;
-    --blue-light: #EBF4FF;
-    --purple: #6B46C1;
-    --purple-light: #F3EEFF;
+    --bg:#F7F4EF;--surface:#FFFFFF;--border:#E2DDD6;--text:#1A1714;--muted:#7A7570;
+    --accent:#2D6A4F;--accent-light:#E8F3EE;--accent2:#B5451B;
+    --yellow:#F2A93B;--yellow-light:#FEF5E7;
+    --blue:#2B6CB0;--blue-light:#EBF4FF;
+    --purple:#6B46C1;--purple-light:#F3EEFF;
+    --navy:#1C2B3A;--navy-light:#EBF4FF;
   }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:15px;line-height:1.6;}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  header{background:var(--navy);color:#F0F4F8;padding:2.5rem 1.5rem 2rem;position:relative;overflow:hidden;}
+  header::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,0.04);}
+  header::after{content:'';position:absolute;bottom:-40px;left:40px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,0.03);}
+  .hi{max-width:700px;margin:0 auto;position:relative;}
+  .wbadge{display:inline-block;background:#7EC8E3;color:#0D1F2D;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;letter-spacing:0.06em;margin-bottom:10px;}
+  .htag{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#7EC8E3;font-weight:500;margin-bottom:10px;}
+  header h1{font-family:'Fraunces',serif;font-size:clamp(2rem,6vw,3rem);font-weight:300;line-height:1.1;margin-bottom:10px;}
+  header h1 em{font-style:italic;color:#7EC8E3;}
+  .hmeta{display:flex;gap:16px;flex-wrap:wrap;margin-top:16px;}
+  .mpill{font-size:12px;padding:4px 12px;border-radius:20px;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);}
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    font-size: 15px;
-    line-height: 1.6;
-  }
+  .tabs-wrap{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10;}
+  .tabs{display:flex;max-width:700px;margin:0 auto;}
+  .tab{flex:1;padding:14px 8px;text-align:center;font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;user-select:none;letter-spacing:0.02em;}
+  .tab.active{color:var(--text);border-bottom-color:var(--navy);}
+  .ti{display:block;font-size:18px;margin-bottom:2px;}
 
-  /* HEADER */
-  header {
-    background: var(--text);
-    color: #F7F4EF;
-    padding: 2.5rem 1.5rem 2rem;
-    position: relative;
-    overflow: hidden;
-  }
-  header::before {
-    content: '';
-    position: absolute;
-    top: -60px; right: -60px;
-    width: 220px; height: 220px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.04);
-  }
-  header::after {
-    content: '';
-    position: absolute;
-    bottom: -40px; left: 40px;
-    width: 140px; height: 140px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.03);
-  }
-  .header-inner { max-width: 700px; margin: 0 auto; position: relative; }
-  .header-tag {
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--yellow);
-    font-weight: 500;
-    margin-bottom: 10px;
-  }
-  header h1 {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(2rem, 6vw, 3rem);
-    font-weight: 300;
-    line-height: 1.1;
-    margin-bottom: 10px;
-  }
-  header h1 em { font-style: italic; color: var(--yellow); }
-  .header-meta {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-    margin-top: 16px;
-  }
-  .meta-pill {
-    font-size: 12px;
-    padding: 4px 12px;
-    border-radius: 20px;
-    border: 1px solid rgba(255,255,255,0.2);
-    color: rgba(255,255,255,0.7);
-  }
+  main{max-width:700px;margin:0 auto;padding:1.5rem 1rem 4rem;}
+  .panel{display:none;}.panel.active{display:block;}
 
-  /* TABS */
-  .tabs-wrap { background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10; }
-  .tabs { display: flex; max-width: 700px; margin: 0 auto; }
-  .tab {
-    flex: 1;
-    padding: 14px 8px;
-    text-align: center;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--muted);
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
-    transition: all 0.2s;
-    user-select: none;
-    letter-spacing: 0.02em;
-  }
-  .tab.active { color: var(--text); border-bottom-color: var(--text); }
-  .tab-icon { display: block; font-size: 18px; margin-bottom: 2px; }
+  .dc{margin-top:0;}
+  .day-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;margin-bottom:12px;overflow:hidden;transition:box-shadow 0.2s;}
+  .day-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.07);}
+  .dh{display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;}
+  .ddot{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:14px;font-weight:600;flex-shrink:0;background:var(--navy);color:#F0F4F8;}
+  .ddot.today{background:var(--accent);}
+  .dinfo{flex:1;min-width:0;}
+  .dname{font-weight:500;font-size:15px;}
+  .dprev{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .dr{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0;}
+  .dkcal{font-size:13px;font-weight:500;}
+  .dkcal span{font-size:10px;font-weight:400;color:var(--muted);}
+  .ebtn{font-size:11px;color:var(--muted);transition:transform 0.25s;display:inline-block;}
+  .ebtn.open{transform:rotate(180deg);}
+  .dbody{max-height:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(0.4,0,0.2,1);}
+  .dbody.open{max-height:780px;}
+  .dbi{padding:0 16px 16px;border-top:1px solid var(--border);}
 
-  /* MAIN */
-  main { max-width: 700px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+  .mr{display:grid;grid-template-columns:80px 1fr auto;gap:10px;align-items:start;padding:10px 0;border-bottom:1px dashed var(--border);}
+  .mr:last-child{border-bottom:none;}
+  .mb{font-size:10px;letter-spacing:0.06em;text-transform:uppercase;font-weight:500;padding:3px 8px;border-radius:6px;display:inline-block;margin-top:2px;}
+  .bo{background:var(--yellow-light);color:#92610A;}
+  .bl{background:var(--blue-light);color:#1A4E8A;}
+  .bs{background:var(--purple-light);color:#4A2D9C;}
+  .ba{background:#E8F0FB;color:#1A3A6A;}
+  .mn{font-size:14px;font-weight:400;color:var(--text);line-height:1.4;}
+  .ms{font-size:12px;color:var(--muted);margin-top:2px;}
+  .ml{font-size:11px;color:#1C5A96;text-decoration:none;font-weight:500;}
+  .ml:hover{text-decoration:underline;}
+  .mkc{font-size:13px;font-weight:500;color:var(--muted);white-space:nowrap;padding-top:2px;}
+  .ltag{display:inline-flex;align-items:center;gap:4px;background:#FFF8E1;color:#8B6300;font-size:10px;padding:2px 7px;border-radius:6px;border:1px solid #F6C842;font-weight:500;margin-top:3px;}
+  .ptag{display:inline-flex;align-items:center;gap:4px;background:#E8F3EE;color:#1A5C3A;font-size:10px;padding:2px 7px;border-radius:6px;border:1px solid #B7DFCA;font-weight:500;margin-top:3px;}
 
-  .panel { display: none; }
-  .panel.active { display: block; }
+  .ss{margin-bottom:24px;}
+  .stit{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:400;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;}
+  .si{display:flex;flex-direction:column;gap:4px;}
+  .sit{display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:10px;cursor:pointer;transition:all 0.15s;user-select:none;}
+  .sit:hover{border-color:var(--navy);}
+  .sit.checked{opacity:0.45;text-decoration:line-through;background:var(--bg);}
+  .sc{width:20px;height:20px;border-radius:6px;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.15s;background:var(--surface);}
+  .sit.checked .sc{background:var(--navy);border-color:var(--navy);color:white;}
+  .sci{display:none;font-size:12px;}
+  .sit.checked .sci{display:block;}
+  .in{flex:1;font-size:14px;}
+  .iq{font-size:12px;color:var(--muted);}
+  .iu{font-size:11px;color:var(--muted);font-style:italic;}
 
-  /* DAY CARD */
-  .day-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    margin-bottom: 12px;
-    overflow: hidden;
-    transition: box-shadow 0.2s;
-  }
-  .day-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
+  .pw{margin-bottom:20px;}
+  .pl{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px;}
+  .pb{height:6px;background:var(--border);border-radius:3px;overflow:hidden;}
+  .pf{height:100%;background:var(--navy);border-radius:3px;transition:width 0.3s ease;}
 
-  .day-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 14px 16px;
-    cursor: pointer;
-    background: var(--surface);
-  }
-  .day-dot {
-    width: 36px; height: 36px;
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Fraunces', serif;
-    font-size: 14px;
-    font-weight: 600;
-    flex-shrink: 0;
-    background: var(--text);
-    color: #F7F4EF;
-  }
-  .day-dot.today { background: var(--accent); }
-  .day-info { flex: 1; min-width: 0; }
-  .day-name { font-weight: 500; font-size: 15px; }
-  .day-preview { font-size: 12px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .day-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
-  .day-kcal { font-size: 13px; font-weight: 500; color: var(--text); }
-  .day-kcal span { font-size: 10px; font-weight: 400; color: var(--muted); }
-  .expand-btn { font-size: 11px; color: var(--muted); transition: transform 0.25s; }
-  .expand-btn.open { transform: rotate(180deg); }
+  .ic{background:#EBF4FF;border:1px solid #B2D4F0;border-radius:12px;padding:14px 16px;margin-bottom:20px;font-size:13px;color:#0D3B6B;line-height:1.6;}
+  .ic strong{font-weight:500;}
+  .ng{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:12px;}
+  @media(min-width:500px){.ng{grid-template-columns:repeat(4,1fr);}}
+  .nc{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center;}
+  .nv{font-size:1.3rem;font-family:'Fraunces',serif;font-weight:400;}
+  .nlb{font-size:11px;color:var(--muted);margin-top:2px;}
+  .sh{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:300;margin:24px 0 14px;}
+  .sh em{font-style:italic;}
 
-  .day-body {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1);
-  }
-  .day-body.open { max-height: 700px; }
-  .day-body-inner { padding: 0 16px 16px; border-top: 1px solid var(--border); }
-
-  /* MEAL ROWS */
-  .meal-row {
-    display: grid;
-    grid-template-columns: 80px 1fr auto;
-    gap: 10px;
-    align-items: start;
-    padding: 10px 0;
-    border-bottom: 1px dashed var(--border);
-  }
-  .meal-row:last-child { border-bottom: none; }
-  .meal-badge {
-    font-size: 10px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    font-weight: 500;
-    padding: 3px 8px;
-    border-radius: 6px;
-    display: inline-block;
-    margin-top: 2px;
-  }
-  .b-ont { background: var(--yellow-light); color: #92610A; }
-  .b-lun { background: var(--blue-light); color: #1A4E8A; }
-  .b-sna { background: var(--purple-light); color: #4A2D9C; }
-  .b-avo { background: var(--accent-light); color: #1A5C3A; }
-
-  .meal-name { font-size: 14px; font-weight: 400; color: var(--text); line-height: 1.4; }
-  .meal-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
-  .meal-link { font-size: 11px; color: var(--accent); text-decoration: none; font-weight: 500; }
-  .meal-link:hover { text-decoration: underline; }
-  .meal-kcal { font-size: 13px; font-weight: 500; color: var(--muted); white-space: nowrap; padding-top: 2px; }
-
-  /* LEFTOVERS badge */
-  .leftover-tag {
-    display: inline-flex; align-items: center; gap: 4px;
-    background: #FFF8E1;
-    color: #8B6300;
-    font-size: 10px;
-    padding: 2px 7px;
-    border-radius: 6px;
-    border: 1px solid #F6C842;
-    font-weight: 500;
-    margin-top: 3px;
-  }
-
-  /* WEEK SUMMARY STRIP */
-  .week-strip {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 6px;
-    margin-bottom: 20px;
-  }
-  .strip-day {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 8px 4px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.15s;
-  }
-  .strip-day:hover, .strip-day.active { background: var(--text); border-color: var(--text); }
-  .strip-day:hover .sd-name, .strip-day.active .sd-name { color: #F7F4EF; }
-  .strip-day:hover .sd-num, .strip-day.active .sd-num { color: rgba(247,244,239,0.6); }
-  .strip-day.today-strip { border-color: var(--accent); }
-  .sd-name { font-size: 11px; font-weight: 500; color: var(--text); }
-  .sd-num { font-size: 10px; color: var(--muted); }
-
-  /* SHOPPING LIST */
-  .shop-section { margin-bottom: 24px; }
-  .shop-title {
-    font-family: 'Fraunces', serif;
-    font-size: 1.1rem;
-    font-weight: 400;
-    margin-bottom: 12px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .shop-title .cat-icon { font-size: 18px; }
-
-  .shop-items { display: flex; flex-direction: column; gap: 4px; }
-  .shop-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 14px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.15s;
-    user-select: none;
-  }
-  .shop-item:hover { border-color: var(--accent); }
-  .shop-item.checked {
-    opacity: 0.45;
-    text-decoration: line-through;
-    background: var(--bg);
-  }
-  .shop-check {
-    width: 20px; height: 20px;
-    border-radius: 6px;
-    border: 1.5px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-    transition: all 0.15s;
-    background: var(--surface);
-  }
-  .shop-item.checked .shop-check {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: white;
-  }
-  .shop-check-icon { display: none; font-size: 12px; }
-  .shop-item.checked .shop-check-icon { display: block; }
-  .item-name { flex: 1; font-size: 14px; }
-  .item-qty { font-size: 12px; color: var(--muted); }
-  .item-use { font-size: 11px; color: var(--muted); font-style: italic; }
-
-  /* Progress bar */
-  .shop-progress-wrap { margin-bottom: 20px; }
-  .prog-label { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-bottom: 6px; }
-  .prog-bar { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
-  .prog-fill { height: 100%; background: var(--accent); border-radius: 3px; transition: width 0.3s ease; }
-
-  /* INFO CARD */
-  .info-card {
-    background: var(--accent-light);
-    border: 1px solid #B7DFCA;
-    border-radius: 12px;
-    padding: 14px 16px;
-    margin-bottom: 20px;
-    font-size: 13px;
-    color: #1A5C3A;
-    line-height: 1.6;
-  }
-  .info-card strong { font-weight: 500; }
-
-  /* NUTRITION SUMMARY */
-  .nut-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 12px; }
-  @media (min-width: 500px) { .nut-grid { grid-template-columns: repeat(4, 1fr); } }
-  .nut-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 12px;
-    text-align: center;
-  }
-  .nut-val { font-size: 1.3rem; font-family: 'Fraunces', serif; font-weight: 400; }
-  .nut-lbl { font-size: 11px; color: var(--muted); margin-top: 2px; }
-
-  /* Section headings */
-  .section-head {
-    font-family: 'Fraunces', serif;
-    font-size: 1.15rem;
-    font-weight: 300;
-    margin: 24px 0 14px;
-    color: var(--text);
-  }
-  .section-head em { font-style: italic; }
-
-  @media (max-width: 480px) {
-    .meal-row { grid-template-columns: 70px 1fr auto; gap: 7px; }
-    .meal-name { font-size: 13px; }
-    .week-strip { gap: 4px; }
-    .strip-day { padding: 6px 2px; }
+  @media(max-width:480px){
+    .mr{grid-template-columns:70px 1fr auto;gap:7px;}
+    .mn{font-size:13px;}
   }
 </style>
 </head>
 <body>
-
 <header>
-  <div class="header-inner">
-    <div class="header-tag">Weekplan dieet</div>
+  <div class="hi">
+    <div class="wbadge">WEEK 2</div>
+    <div class="htag">Weekplan dieet</div>
     <h1>1600 kcal<br><em>per dag</em></h1>
-    <div class="header-meta">
-      <span class="meta-pill">🛒 Boodschappen zaterdag</span>
-      <span class="meta-pill">🍳 Ontbijt: magere skyr 150g</span>
-      <span class="meta-pill">📅 7 dagen</span>
+    <div class="hmeta">
+      <span class="mpill">🛒 Boodschappen zaterdag</span>
+      <span class="mpill">🍳 Skyr 150g ontbijt</span>
+      <span class="mpill">♻️ 5 restjeslunches</span>
     </div>
   </div>
 </header>
 
 <div class="tabs-wrap">
   <div class="tabs">
-    <div class="tab active" onclick="showPanel('week')">
-      <span class="tab-icon">📅</span>Week
-    </div>
-    <div class="tab" onclick="showPanel('shop')">
-      <span class="tab-icon">🛒</span>Boodschappen
-    </div>
-    <div class="tab" onclick="showPanel('info')">
-      <span class="tab-icon">📊</span>Info
-    </div>
+    <div class="tab active" onclick="showPanel('week')"><span class="ti">📅</span>Week</div>
+    <div class="tab" onclick="showPanel('shop')"><span class="ti">🛒</span>Boodschappen</div>
+    <div class="tab" onclick="showPanel('info')"><span class="ti">📊</span>Info</div>
   </div>
 </div>
 
 <main>
-
-<!-- ============ WEEK PANEL ============ -->
 <div class="panel active" id="panel-week">
-
-  <p class="section-head">Week van <em>zaterdag t/m vrijdag</em></p>
-
-  <div id="days-container"></div>
+  <p class="sh">Week van <em>zaterdag t/m vrijdag</em></p>
+  <div id="DC"></div>
 </div>
 
-<!-- ============ SHOP PANEL ============ -->
 <div class="panel" id="panel-shop">
-
-  <div class="info-card">
-    <strong>🛒 Boodschappen voor zaterdag</strong><br>
-    Koop dit alles op zaterdag. Verse vis en garnalen gebruik je best vroeg in de week (za/zo/ma). Vlees en groenten zijn iets langer houdbaar. Avocado koop je liefst halfrijp — die is maandag perfect.
+  <div class="ic"><strong>🛒 Boodschappen voor zaterdag</strong><br>
+  Alle kip kan je in bulk kopen (1kg) en zelf verdelen. Avocado halfrijp — zaterdag perfect. Gehaktbrood bak je donderdag: 4 porties, 1 avond + 1 lunch + 2 invriezen. Vrijdagpizza gebruikt restjes kip van woensdag.</div>
+  <div class="pw">
+    <div class="pl"><span>Afgevinkt</span><span id="pt">0 / 0</span></div>
+    <div class="pb"><div class="pf" id="pf" style="width:0%"></div></div>
   </div>
-
-  <div class="shop-progress-wrap">
-    <div class="prog-label">
-      <span>Afgevinkt</span>
-      <span id="prog-text">0 / 0</span>
-    </div>
-    <div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
-  </div>
-
-  <div id="shop-container"></div>
+  <div id="SC"></div>
 </div>
 
-<!-- ============ INFO PANEL ============ -->
 <div class="panel" id="panel-info">
-  <p class="section-head">Voedingswaarden <em>per dag</em></p>
-
+  <p class="sh">Voedingswaarden <em>per dag</em></p>
   <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:20px;">
     <div style="font-size:13px;color:var(--muted);margin-bottom:12px;">Gemiddelde verdeling per maaltijdmoment</div>
-    <div class="nut-grid">
-      <div class="nut-card"><div class="nut-val" style="color:var(--yellow)">90</div><div class="nut-lbl">Ontbijt kcal</div></div>
-      <div class="nut-card"><div class="nut-val" style="color:var(--blue)">~310</div><div class="nut-lbl">Lunch kcal</div></div>
-      <div class="nut-card"><div class="nut-val" style="color:var(--purple)">~115</div><div class="nut-lbl">Snack kcal</div></div>
-      <div class="nut-card"><div class="nut-val" style="color:var(--accent)">~410</div><div class="nut-lbl">Avond kcal</div></div>
+    <div class="ng">
+      <div class="nc"><div class="nv" style="color:var(--yellow)">90</div><div class="nlb">Ontbijt kcal</div></div>
+      <div class="nc"><div class="nv" style="color:var(--blue)">~290</div><div class="nlb">Lunch kcal</div></div>
+      <div class="nc"><div class="nv" style="color:var(--purple)">~110</div><div class="nlb">Snack kcal</div></div>
+      <div class="nc"><div class="nv" style="color:var(--navy)">~466</div><div class="nlb">Avond kcal</div></div>
     </div>
   </div>
 
-  <p class="section-head">Planning <em>& houdbaarheid</em></p>
-  <div style="display:flex;flex-direction:column;gap:8px;">
+  <p class="sh">Planning <em>& houdbaarheid</em></p>
+  <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:24px;">
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;">
-      <div style="font-size:12px;font-weight:500;color:var(--accent2);margin-bottom:4px;">🐟 Verse vis & garnalen</div>
-      <div style="font-size:13px;color:var(--muted);">Zaterdag t/m maandag — maximaal 2 dagen na aankoop</div>
+      <div style="font-size:12px;font-weight:500;color:var(--accent2);margin-bottom:4px;">🥑 Avocado & runderburger — Zaterdag</div>
+      <div style="font-size:13px;color:var(--muted);">Halfrijp kopen, dag 1 gebruiken — avocado bederft snel na rijping</div>
     </div>
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;">
-      <div style="font-size:12px;font-weight:500;color:var(--accent2);margin-bottom:4px;">🥑 Avocado</div>
-      <div style="font-size:13px;color:var(--muted);">Maandag gebruiken — halfrijp kopen op zaterdag</div>
+      <div style="font-size:12px;font-weight:500;color:var(--accent2);margin-bottom:4px;">🍗 Kip in bulk — Zondag t/m Woensdag</div>
+      <div style="font-size:13px;color:var(--muted);">Koop 1kg kipfilet. Verdeel: 300g zo, 300g ma teriyaki, 200g di pita, 200g wo paprika. Restje wo gaat op de vrijdagpizza.</div>
     </div>
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;">
-      <div style="font-size:12px;font-weight:500;color:var(--accent2);margin-bottom:4px;">🥩 Runderreepjes</div>
-      <div style="font-size:13px;color:var(--muted);">Dinsdag/woensdag — 3–4 dagen houdbaar in koelkast</div>
+      <div style="font-size:12px;font-weight:500;color:var(--accent2);margin-bottom:4px;">🍖 Gehaktbrood — Donderdag (4 porties!)</div>
+      <div style="font-size:13px;color:var(--muted);">1 portie = avondeten, 1 portie = vrijdaglunch, 2 porties invriezen voor volgende week</div>
     </div>
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;">
-      <div style="font-size:12px;font-weight:500;color:var(--accent2);margin-bottom:4px;">🍳 Eieren & groenten</div>
-      <div style="font-size:13px;color:var(--muted);">Shakshuka & waterzooi gepland voor donderdag–vrijdag</div>
-    </div>
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;">
-      <div style="font-size:12px;font-weight:500;color:var(--accent2);margin-bottom:4px;">♻️ Restjes</div>
-      <div style="font-size:13px;color:var(--muted);">Alle avondrecepten zijn voor 2 porties — restjes worden lunch de volgende dag ingepland</div>
+      <div style="font-size:12px;font-weight:500;color:var(--accent2);margin-bottom:4px;">♻️ 5 van 7 lunches = restjes</div>
+      <div style="font-size:13px;color:var(--muted);">Zo, Ma, Di, Wo, Do en Vr lunch komen uit restjes — minder koken, minder verspilling</div>
     </div>
   </div>
 
-  <p class="section-head" style="margin-top:28px">Ontbijt <em>elke dag</em></p>
+  <p class="sh">Vergelijking <em>met week 1</em></p>
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:24px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;font-size:13px;">
+      <div>
+        <div style="font-weight:500;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px;">Week 1</div>
+        <div style="color:var(--muted);">Vis, garnalen, shakshuka, waterzooi — licht & mediterraan</div>
+      </div>
+      <div>
+        <div style="font-weight:500;font-size:11px;color:var(--navy);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px;">Week 2</div>
+        <div style="color:var(--muted);">Kip parmigiana, teriyaki, gyros-burger, pizza — meer comfort & variatie</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="sh">Ontbijt <em>elke dag</em></p>
   <div style="background:var(--yellow-light);border:1px solid #F6C842;border-radius:12px;padding:14px 16px;font-size:13px;color:#6B4A00;">
     <strong>150g magere skyr</strong> (naturel) + stuk fruit naar keuze<br>
-    <span style="color:#8B6300">± 90 kcal • 15g eiwit • 9g KH • 0g vet</span><br><br>
-    Skyr is hoog in eiwit en houdt je verzadigd tot de lunch. Voeg een stuk fruit toe (bijv. banaan, appel of bessen) voor energie en vezels — dit telt niet in de 90 kcal.
+    <span style="color:#8B6300">± 90 kcal • 15g eiwit • 9g KH • 0g vet</span>
   </div>
 </div>
-
 </main>
 
 <script>
-const BASE = "https://fox2471.github.io/mealie-recipes/";
-
-const week = [
-  {
-    dag: "Zaterdag",
-    short: "Za",
-    avond: {
-      name: "Omelet Wrap met Hüttenkäse en Gerookte Zalm",
-      kcal: 380,
-      file: "omelet-wrap-zalm.html",
-      porties: 1,
-      note: "Lichte start, verse zalm meteen gebruiken"
-    },
-    lunch: { name: "Groente-omelet + 1 volkoren boterham", kcal: 260, note: "" },
-    snack: { name: "150g magere skyr met blauwe bessen", kcal: 105 },
-    totalKcal: 835,
-  },
-  {
-    dag: "Zondag",
-    short: "Zo",
-    avond: {
-      name: "Visfilet met Groene Pesto en Tomaat",
-      kcal: 400,
-      file: "visfilet-pesto-tomaat.html",
-      porties: 2,
-      note: "Maak dubbele portie — restje is morgen lunch"
-    },
-    lunch: { name: "2 volkoren boterhammen met kipfilet en tomaat", kcal: 310, note: "" },
-    snack: { name: "Appel + 15g amandelen", kcal: 130 },
-    totalKcal: 930,
-  },
-  {
-    dag: "Maandag",
-    short: "Ma",
-    avond: {
-      name: "Gegrilde Kip met Avocadosalsa",
-      kcal: 400,
-      file: "Gegrilde%20Kip%20met%20Avocadosalsa.html",
-      porties: 2,
-      note: "Avocado op zijn best vandaag — maak dubbele portie"
-    },
-    lunch: {
-      name: "Restje visfilet met pesto (van zondag) + salade",
-      kcal: 300,
-      leftover: true,
-      leftoverFrom: "Visfilet met Pesto"
-    },
-    snack: { name: "Rijstwafels (2st) + 1 tl pindakaas", kcal: 120 },
-    totalKcal: 910,
-  },
-  {
-    dag: "Dinsdag",
-    short: "Di",
-    avond: {
-      name: "Thaise Rode Curry met Garnalen en Rijst",
-      kcal: 420,
-      file: "thaise-rode-curry-garnalen.html",
-      porties: 2,
-      note: "Dubbele portie — restje voor woensdaglunch"
-    },
-    lunch: {
-      name: "Restje gegrilde kip met avocadosalsa (van maandag)",
-      kcal: 300,
-      leftover: true,
-      leftoverFrom: "Gegrilde Kip"
-    },
-    snack: { name: "Banaan", kcal: 90 },
-    totalKcal: 900,
-  },
-  {
-    dag: "Woensdag",
-    short: "Wo",
-    avond: {
-      name: "Beef Stir-Fry met Broccoli en Paprika",
-      kcal: 450,
-      file: "beef-stirfry-broccoli-paprika.html",
-      porties: 2,
-      note: "Dubbele portie — restje voor donderdaglunch"
-    },
-    lunch: {
-      name: "Restje Thaise curry met garnalen (van dinsdag)",
-      kcal: 310,
-      leftover: true,
-      leftoverFrom: "Thaise Curry"
-    },
-    snack: { name: "Komkommer + 2 el hummus", kcal: 90 },
-    totalKcal: 930,
-  },
-  {
-    dag: "Donderdag",
-    short: "Do",
-    avond: {
-      name: "Shakshuka met Spinazie en Feta",
-      kcal: 390,
-      file: "shakshuka-spinazie-feta.html",
-      porties: 2,
-      note: "Vegetarische dag — houdbare ingrediënten"
-    },
-    lunch: {
-      name: "Restje beef stir-fry met broccoli (van woensdag)",
-      kcal: 320,
-      leftover: true,
-      leftoverFrom: "Beef Stir-Fry"
-    },
-    snack: { name: "Peer + 20g walnoten", kcal: 155 },
-    totalKcal: 1055,
-  },
-  {
-    dag: "Vrijdag",
-    short: "Vr",
-    avond: {
-      name: "Waterzooi van Vis of Kip",
-      kcal: 420,
-      file: "waterzooi-vis-of-kip.html",
-      porties: 2,
-      note: "Klassieke Belgische afsluiter"
-    },
-    lunch: {
-      name: "Restje shakshuka met pita (van donderdag)",
-      kcal: 290,
-      leftover: true,
-      leftoverFrom: "Shakshuka"
-    },
-    snack: { name: "Magere kwark 100g + 1 tl honing", kcal: 85 },
-    totalKcal: 885,
-  },
+const BASE="https://fox2471.github.io/mealie-recipes/";
+const week=[
+  {dag:"Zaterdag",short:"Za",
+   avond:{name:"Gezonde Runderburger met Avocado & Slawrap",kcal:450,file:"runderburger-avocado-slawrap.html",porties:2,note:"Avocado op zijn best vandaag. Dubbele portie — restje voor zondaglunch."},
+   lunch:{name:"Salade met 2 eieren, cherry tomaten en 1 volkoren boterham",kcal:290},
+   snack:{name:"150g magere skyr met frambozen",kcal:100}},
+  {dag:"Zondag",short:"Zo",
+   avond:{name:"Kip Parmigiana Light (uit de oven)",kcal:460,file:"kip-parmigiana-light.html",porties:2,note:"2 porties — restje is maandaglunch. Serveer met courgetti of gegrilde groenten."},
+   lunch:{name:"Restje runderburger in sla met tomaat (van zaterdag)",kcal:310,leftover:true,leftoverFrom:"Runderburger"},
+   snack:{name:"Appel + 15g amandelen",kcal:130}},
+  {dag:"Maandag",short:"Ma",
+   avond:{name:"Kip Teriyaki met Broccoli en Rijst",kcal:480,file:"kip-teriyaki-broccoli-rijst.html",porties:2,note:"Dubbele portie — restje voor dinsdaglunch. Bewaar extra saus apart."},
+   lunch:{name:"Restje kip parmigiana met groenten (van zondag)",kcal:310,leftover:true,leftoverFrom:"Kip Parmigiana"},
+   snack:{name:"Rijstwafels (2st) + 1 tl pindakaas",kcal:120}},
+  {dag:"Dinsdag",short:"Di",
+   avond:{name:"Pita's met Kruidige Kip en Yoghurtsaus",kcal:480,file:"pita-kip-yoghurtsaus.html",porties:2,note:"Dubbele portie — restje kip (zonder pita) als salade voor woensdaglunch."},
+   lunch:{name:"Restje kip teriyaki met broccoli en rijst (van maandag)",kcal:290,leftover:true,leftoverFrom:"Kip Teriyaki"},
+   snack:{name:"Banaan",kcal:90}},
+  {dag:"Woensdag",short:"Wo",
+   avond:{name:"Gegrilde Kip met Paprika en Gekookte Aardappelen",kcal:500,file:"gegrilde-kip-met-paprika-en-aardappelen.html",porties:2,note:"Dubbele portie — restje kip bewaren voor de pizza op vrijdag!"},
+   lunch:{name:"Restje kruidige kip als salade met rucola en komkommer (van dinsdag)",kcal:260,leftover:true,leftoverFrom:"Kruidige Kip"},
+   snack:{name:"Komkommer + 2 el hummus",kcal:90}},
+  {dag:"Donderdag",short:"Do",
+   avond:{name:"Gehaktbrood met Groenten",kcal:390,file:"gehaktbrood-met-groenten.html",porties:4,note:"Recept = 4 porties! 1 avond · 1 vrijdaglunch · 2 invriezen voor volgende week."},
+   lunch:{name:"Restje kip met paprika en aardappelen (van woensdag)",kcal:300,leftover:true,leftoverFrom:"Kip met Paprika"},
+   snack:{name:"Peer + 20g walnoten",kcal:155}},
+  {dag:"Vrijdag",short:"Vr",
+   avond:{name:"Gezonde Pizza met Kip, Paprika en Volkorenbodem",kcal:500,file:"gezonde-pizza-kip-paprika.html",porties:1,note:"Gebruik restjes kip van woensdag als beleg — geen extra kip nodig!"},
+   lunch:{name:"Restje gehaktbrood met groenten + salade (van donderdag)",kcal:280,leftover:true,leftoverFrom:"Gehaktbrood"},
+   snack:{name:"Magere kwark 100g + 1 tl honing",kcal:85}},
 ];
 
-// Compute totals
-week.forEach(d => {
-  d.total = 90 + d.lunch.kcal + d.snack.kcal + d.avond.kcal;
-});
+week.forEach(d=>{d.total=90+d.lunch.kcal+d.snack.kcal+d.avond.kcal;});
+const dayNames=["Zondag","Maandag","Dinsdag","Woensdag","Donderdag","Vrijdag","Zaterdag"];
+const todayName=dayNames[new Date().getDay()];
+const DC=document.getElementById("DC");
 
-// Today detection (optional, week starts Saturday)
-const dayNames = ["Zondag","Maandag","Dinsdag","Woensdag","Donderdag","Vrijdag","Zaterdag"];
-const todayName = dayNames[new Date().getDay()];
-
-// Build day cards
-const dc = document.getElementById("days-container");
-
-week.forEach((d, i) => {
-  const isToday = d.dag === todayName;
-  const diff = d.total - 1600;
-  const diffStr = diff === 0 ? "= 1600" : (diff > 0 ? `+${diff}` : `${diff}`);
-
-  const card = document.createElement("div");
-  card.className = "day-card";
-  card.id = "card-" + i;
-
-  const lunchLeftover = d.lunch.leftover
-    ? `<div class="leftover-tag">♻️ restje ${d.lunch.leftoverFrom}</div>`
-    : "";
-
-  card.innerHTML = `
-    <div class="day-header" onclick="toggleDay(${i})">
-      <div class="day-dot ${isToday ? 'today' : ''}">${d.short}</div>
-      <div class="day-info">
-        <div class="day-name">${d.dag}${isToday ? ' <span style="font-size:11px;color:var(--accent);font-weight:400">— vandaag</span>' : ''}</div>
-        <div class="day-preview">${d.avond.name}</div>
+week.forEach((d,i)=>{
+  const isToday=d.dag===todayName;
+  const diff=d.total-1600;
+  const ds=diff===0?"= 1600":diff>0?"+"+diff:""+diff;
+  const dc=Math.abs(diff)<=80?"#1A5C3A":"#8B4500";
+  const ll=d.lunch.leftover?`<div class="ltag">♻️ restje ${d.lunch.leftoverFrom}</div>`:"";
+  const pt=d.avond.porties>1?`<div class="ptag">🍽️ ${d.avond.porties} porties — restje voor morgen</div>`:"";
+  const card=document.createElement("div");
+  card.className="day-card";
+  card.innerHTML=`
+    <div class="dh" onclick="tog(${i})">
+      <div class="ddot ${isToday?"today":""}">${d.short}</div>
+      <div class="dinfo">
+        <div class="dname">${d.dag}${isToday?' <span style="font-size:11px;color:var(--accent);font-weight:400">— vandaag</span>':""}</div>
+        <div class="dprev">${d.avond.name}</div>
       </div>
-      <div class="day-right">
-        <div class="day-kcal">${d.total} <span>kcal</span></div>
-        <div class="expand-btn" id="chev-${i}">▼</div>
+      <div class="dr">
+        <div class="dkcal">${d.total} <span>kcal</span></div>
+        <div class="ebtn" id="ch${i}">▼</div>
       </div>
     </div>
-    <div class="day-body" id="body-${i}">
-      <div class="day-body-inner">
-        <div class="meal-row">
-          <span><span class="meal-badge b-ont">Ontbijt</span></span>
-          <div>
-            <div class="meal-name">Magere skyr 150g</div>
-            <div class="meal-sub">+ stuk fruit naar keuze</div>
-          </div>
-          <span class="meal-kcal">90 kcal</span>
+    <div class="dbody" id="bd${i}">
+      <div class="dbi">
+        <div class="mr">
+          <span><span class="mb bo">Ontbijt</span></span>
+          <div><div class="mn">Magere skyr 150g</div><div class="ms">+ stuk fruit naar keuze</div></div>
+          <span class="mkc">90 kcal</span>
         </div>
-        <div class="meal-row">
-          <span><span class="meal-badge b-lun">Lunch</span></span>
-          <div>
-            <div class="meal-name">${d.lunch.name}</div>
-            ${lunchLeftover}
-          </div>
-          <span class="meal-kcal">${d.lunch.kcal} kcal</span>
+        <div class="mr">
+          <span><span class="mb bl">Lunch</span></span>
+          <div><div class="mn">${d.lunch.name}</div>${ll}</div>
+          <span class="mkc">${d.lunch.kcal} kcal</span>
         </div>
-        <div class="meal-row">
-          <span><span class="meal-badge b-sna">Snack</span></span>
-          <div><div class="meal-name">${d.snack.name}</div></div>
-          <span class="meal-kcal">${d.snack.kcal} kcal</span>
+        <div class="mr">
+          <span><span class="mb bs">Snack</span></span>
+          <div><div class="mn">${d.snack.name}</div></div>
+          <span class="mkc">${d.snack.kcal} kcal</span>
         </div>
-        <div class="meal-row">
-          <span><span class="meal-badge b-avo">Avond</span></span>
+        <div class="mr">
+          <span><span class="mb ba">Avond</span></span>
           <div>
-            <div class="meal-name">${d.avond.name}</div>
-            <div class="meal-sub">${d.avond.note}</div>
-            <div class="meal-sub" style="margin-top:4px"><a class="meal-link" href="${BASE}${d.avond.file}" target="_blank">Bekijk recept →</a></div>
+            <div class="mn">${d.avond.name}</div>
+            ${pt}
+            <div class="ms" style="margin-top:4px">${d.avond.note}</div>
+            <div class="ms" style="margin-top:4px"><a class="ml" href="${BASE}${d.avond.file}" target="_blank">Bekijk recept →</a></div>
           </div>
-          <span class="meal-kcal">${d.avond.kcal} kcal</span>
+          <span class="mkc">${d.avond.kcal} kcal</span>
         </div>
         <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
           <span style="font-size:12px;color:var(--muted)">Dagelijks totaal</span>
-          <span style="font-size:14px;font-weight:500;">${d.total} kcal <span style="font-size:11px;color:var(--muted);font-weight:400">(${diffStr})</span></span>
+          <span style="font-size:14px;font-weight:500;">${d.total} kcal <span style="font-size:11px;color:${dc};font-weight:400">(${ds})</span></span>
         </div>
       </div>
-    </div>
-  `;
-  dc.appendChild(card);
-
-  // auto-open today
-  if (isToday) {
-    setTimeout(() => toggleDay(i), 100);
-  }
+    </div>`;
+  DC.appendChild(card);
+  if(isToday)setTimeout(()=>tog(i),100);
 });
 
-function toggleDay(i) {
-  const body = document.getElementById("body-" + i);
-  const chev = document.getElementById("chev-" + i);
-  const open = body.classList.toggle("open");
-  chev.classList.toggle("open", open);
+function tog(i){
+  const b=document.getElementById("bd"+i);
+  const c=document.getElementById("ch"+i);
+  const o=b.classList.toggle("open");
+  c.classList.toggle("open",o);
 }
 
-// Shopping list data
-const shopData = {
-  "🥩 Vlees & vis": [
-    { name: "Gerookte zalm", qty: "50g", use: "Zaterdag — omelet wrap" },
-    { name: "Visfilets (pangasius of kabeljauw)", qty: "4 filets (~600g)", use: "Zondag — vis met pesto (2 porties)" },
-    { name: "Kipfilet", qty: "400g", use: "Maandag — kip met avocadosalsa (2p)" },
-    { name: "Gepelde garnalen", qty: "200g", use: "Dinsdag — Thaise curry" },
-    { name: "Runderreepjes / biefstuk", qty: "250g", use: "Woensdag — beef stir-fry" },
+const shopData={
+  "🥩 Vlees & gevogelte":[
+    {name:"Kipfilet",qty:"±1 kg",use:"Zo parmigiana (300g) · Ma teriyaki (300g) · Di pita (200g) · Wo paprika (200g) — restje wo → pizza vr"},
+    {name:"Mager rundergehakt",qty:"200g",use:"Za — runderburger (2 stuks)"},
+    {name:"Mager rund- of kipgehakt",qty:"400g",use:"Do — gehaktbrood (4 porties)"},
   ],
-  "🥦 Groenten & salade": [
-    { name: "Cherrytomaatjes", qty: "400g", use: "Zondag + maandag" },
-    { name: "Avocado (halfrijp)", qty: "1 stuk", use: "Maandag — laat rijpen tot ma" },
-    { name: "Rode ui", qty: "1 stuk", use: "Maandag" },
-    { name: "Rode paprika", qty: "3 stuks", use: "Dinsdag + woensdag" },
-    { name: "Sperziebonen of sugar snaps", qty: "100g", use: "Dinsdag" },
-    { name: "Broccoli", qty: "200g", use: "Woensdag" },
-    { name: "Verse spinazie", qty: "200g", use: "Donderdag — shakshuka" },
-    { name: "Wortels", qty: "3 stuks", use: "Vrijdag — waterzooi" },
-    { name: "Prei", qty: "1 stuk", use: "Vrijdag — waterzooi" },
-    { name: "Knolselder (klein)", qty: "¼ stuk", use: "Vrijdag" },
-    { name: "Aardappelen (kleine)", qty: "2 stuks", use: "Vrijdag" },
-    { name: "Lente-ui", qty: "1 bosje", use: "Dinsdag + woensdag" },
-    { name: "Rucola of spinazie (zakje)", qty: "1 zakje", use: "Zaterdag + lunches" },
-    { name: "Komkommer", qty: "1 stuk", use: "Snack woensdag" },
+  "🥦 Groenten":[
+    {name:"Avocado (halfrijp)",qty:"1 stuk",use:"Za — runderburger, laat rijpen tot za avond"},
+    {name:"Romaine of ijsbergsla",qty:"1 krop",use:"Za burger + di pita + vr pizza garnering"},
+    {name:"Broccoli",qty:"200g",use:"Ma — kip teriyaki"},
+    {name:"Rode paprika",qty:"4 stuks",use:"Wo kip+aardappelen (2) + vr pizza (½) + di pita (½) + za lunch"},
+    {name:"Champignons",qty:"3 stuks",use:"Vr — pizza beleg"},
+    {name:"Wortel",qty:"1 stuk",use:"Do — gehaktbrood"},
+    {name:"Courgette",qty:"2 stuks",use:"Do gehaktbrood + zo bijgerecht bij parmigiana"},
+    {name:"Cherry tomaten",qty:"250g",use:"Za lunch salade + lunches door de week"},
+    {name:"Komkommer",qty:"1 stuk",use:"Di pita + snack wo"},
+    {name:"Kleine ui",qty:"3 stuks",use:"Wo kip+aardappelen + do gehaktbrood"},
+    {name:"Rode ui",qty:"1 stuk",use:"Za runderburger + di pita"},
+    {name:"Rucola of spinazie (zakje)",qty:"1 zakje",use:"Wo lunch salade + di pita + pizza"},
+    {name:"Aardappelen",qty:"300g",use:"Wo — kip met paprika en aardappelen"},
   ],
-  "🧀 Zuivel & eieren": [
-    { name: "Magere skyr (naturel)", qty: "1kg (ruim 7×150g)", use: "Ontbijt elke dag + snack di" },
-    { name: "Eieren", qty: "12 stuks", use: "Shakshuka + omeletten + waterzooi" },
-    { name: "Hüttenkäse", qty: "50g", use: "Zaterdag — omelet wrap" },
-    { name: "Feta", qty: "50g", use: "Donderdag — shakshuka" },
-    { name: "Magere yoghurt", qty: "1 klein potje", use: "Waterzooi + curry" },
+  "🧀 Zuivel & eieren":[
+    {name:"Magere skyr (naturel)",qty:"1,2 kg",use:"Ontbijt elke dag (7×150g) + snack za (150g)"},
+    {name:"Eieren",qty:"6 stuks",use:"Za lunch salade (2) + do gehaktbrood (1) + extra"},
+    {name:"Magere kwark",qty:"250g",use:"Snack vr (100g) + buffer"},
+    {name:"Griekse yoghurt",qty:"200g",use:"Di — yoghurtsaus bij pita"},
+    {name:"Geraspte 30+ kaas",qty:"40g",use:"Zo — kip parmigiana"},
+    {name:"Mozzarella light (geraspt)",qty:"30g",use:"Vr — pizza"},
   ],
-  "🥫 Houdbaar & droog": [
-    { name: "Tomatenblokjes (blik)", qty: "1 blik (400g)", use: "Donderdag — shakshuka" },
-    { name: "Jasmijnrijst", qty: "120g droog", use: "Dinsdag — Thaise curry" },
-    { name: "Groene pesto (pot)", qty: "1 potje", use: "Zondag — visfilet" },
-    { name: "Rode currypasta", qty: "1 potje", use: "Dinsdag" },
-    { name: "Sojasaus (of tamari)", qty: "klein flesje", use: "Woensdag — stir-fry" },
-    { name: "Bouillon (kip of groenten)", qty: "600ml", use: "Vrijdag waterzooi + dinsdag curry" },
-    { name: "Pita's (volkoren)", qty: "2 stuks", use: "Donderdag — bij shakshuka" },
-    { name: "Volkoren boterhammen", qty: "1 pak", use: "Lunches zo + snack za" },
-    { name: "Rijstwafels", qty: "1 pak", use: "Snack maandag" },
-    { name: "Amandelen", qty: "15g", use: "Snack zondag" },
-    { name: "Walnoten", qty: "20g", use: "Snack donderdag" },
-    { name: "Pindakaas", qty: "klein potje", use: "Snack maandag" },
-    { name: "Honing", qty: "klein potje", use: "Snack vrijdag" },
-    { name: "Hummus", qty: "1 bakje", use: "Snack woensdag" },
+  "🥫 Houdbaar & droog":[
+    {name:"Tomatenpassata",qty:"400ml",use:"Zo kip parmigiana + vr pizza saus"},
+    {name:"Zilvervliesrijst",qty:"120g droog",use:"Ma — kip teriyaki"},
+    {name:"Volkoren pizzadeeg",qty:"150g",use:"Vr — pizza bodem"},
+    {name:"Volkoren pita's",qty:"4 stuks",use:"Di pita's (2 porties = 4 halve pita's)"},
+    {name:"Volkoren boterhammen",qty:"1 pak",use:"Za lunch + buffer andere dagen"},
+    {name:"Sojasaus of tamari",qty:"klein flesje",use:"Ma teriyaki"},
+    {name:"Honing of ahornsiroop",qty:"klein potje",use:"Ma teriyaki + snack vr"},
+    {name:"Hummus",qty:"1 bakje",use:"Snack wo"},
+    {name:"Pindakaas",qty:"klein potje",use:"Snack ma"},
+    {name:"Amandelen",qty:"15g",use:"Snack zo"},
+    {name:"Walnoten",qty:"20g",use:"Snack do"},
+    {name:"Rijstwafels",qty:"1 pak",use:"Snack ma"},
+    {name:"Havermout",qty:"4 el",use:"Do — gehaktbrood binder"},
+    {name:"Mosterd",qty:"–",use:"Za burger + do gehaktbrood"},
+    {name:"Maïzena",qty:"1 zakje",use:"Ma — teriyakisaus binden"},
+    {name:"Olijfolie",qty:"–",use:"Meerdere recepten"},
   ],
-  "🌿 Kruiden & specerijen": [
-    { name: "Paprikapoeder", qty: "–", use: "Kip + shakshuka" },
-    { name: "Komijn", qty: "–", use: "Shakshuka + kip" },
-    { name: "Knoflookpoeder", qty: "–", use: "Kip" },
-    { name: "Verse koriander (optioneel)", qty: "1 bosje", use: "Curry + kip" },
-    { name: "Verse gember", qty: "klein stukje", use: "Stir-fry + curry" },
-    { name: "Verse peterselie", qty: "1 bosje", use: "Waterzooi" },
-    { name: "Limoen", qty: "2 stuks", use: "Kip + curry" },
-    { name: "Citroen", qty: "1 stuk", use: "Visfilet + omelet wrap" },
-    { name: "Sesamolie (optioneel)", qty: "klein flesje", use: "Stir-fry" },
+  "🌿 Kruiden & specerijen":[
+    {name:"Paprikapoeder",qty:"–",use:"Di pita · Wo kip · Za burger"},
+    {name:"Knoflookpoeder",qty:"–",use:"Meerdere recepten"},
+    {name:"Oregano (gedroogd)",qty:"–",use:"Zo parmigiana · Wo kip · Vr pizza"},
+    {name:"Tijm (gedroogd)",qty:"–",use:"Do gehaktbrood"},
+    {name:"Komijn",qty:"–",use:"Di pita kip"},
+    {name:"Verse knoflook",qty:"1 bol",use:"Zo parmigiana · Ma teriyaki · Di yoghurtsaus · Vr pizza"},
+    {name:"Verse gember",qty:"klein stukje",use:"Ma — teriyaki"},
+    {name:"Verse peterselie",qty:"1 bosje",use:"Wo kip+aardappelen · Do gehaktbrood"},
+    {name:"Citroen",qty:"1 stuk",use:"Di — yoghurtsaus"},
+    {name:"Verse basilicum (opt.)",qty:"1 plantje/zakje",use:"Zo parmigiana · Vr pizza"},
+    {name:"Sesamzaadjes (opt.)",qty:"–",use:"Ma teriyaki garnering"},
   ],
-  "🍎 Fruit": [
-    { name: "Fruit naar keuze (7 stuks)", qty: "bijv. appels, peren, bananen", use: "Ontbijt bij skyr elke dag" },
-    { name: "Blauwe bessen", qty: "1 bakje", use: "Snack zaterdag — bij skyr" },
-    { name: "Peer", qty: "1 stuk", use: "Snack donderdag" },
-    { name: "Banaan", qty: "1 stuk", use: "Snack dinsdag" },
+  "🍎 Fruit":[
+    {name:"Fruit naar keuze (7 stuks)",qty:"appels, peren, bananen…",use:"Ontbijt bij skyr elke dag"},
+    {name:"Frambozen of rood fruit",qty:"1 bakje",use:"Snack za — bij skyr"},
+    {name:"Appel",qty:"1 stuk",use:"Snack zo"},
+    {name:"Banaan",qty:"1 stuk",use:"Snack di"},
+    {name:"Peer",qty:"1 stuk",use:"Snack do"},
   ],
 };
 
-// Build shopping list
-const shopContainer = document.getElementById("shop-container");
-let totalItems = 0;
-let checkedItems = 0;
-const allItems = [];
-
-Object.entries(shopData).forEach(([cat, items]) => {
-  const sec = document.createElement("div");
-  sec.className = "shop-section";
-  sec.innerHTML = `<div class="shop-title"><span class="cat-icon">${cat.split(' ')[0]}</span>${cat.substring(cat.indexOf(' ')+1)}</div><div class="shop-items" id="cat-${totalItems}"></div>`;
-  shopContainer.appendChild(sec);
-
-  const itemsDiv = sec.querySelector(".shop-items");
-
-  items.forEach((item, j) => {
-    const idx = totalItems;
-    totalItems++;
-    allItems.push({ idx, el: null });
-
-    const el = document.createElement("div");
-    el.className = "shop-item";
-    el.innerHTML = `
-      <div class="shop-check"><span class="shop-check-icon">✓</span></div>
-      <div style="flex:1;min-width:0;">
-        <div class="item-name">${item.name}</div>
-        <div class="item-use">${item.use}</div>
-      </div>
-      <div class="item-qty">${item.qty}</div>
-    `;
-    el.onclick = () => {
-      const was = el.classList.toggle("checked");
-      checkedItems += was ? 1 : -1;
-      updateProgress();
-    };
-    allItems[idx].el = el;
-    itemsDiv.appendChild(el);
+const SC=document.getElementById("SC");
+let total=0,checked=0;
+Object.entries(shopData).forEach(([cat,items])=>{
+  const s=document.createElement("div");
+  s.className="ss";
+  const icon=cat.split(" ")[0];
+  const name=cat.substring(cat.indexOf(" ")+1);
+  s.innerHTML=`<div class="stit"><span>${icon}</span>${name}</div><div class="si"></div>`;
+  SC.appendChild(s);
+  const si=s.querySelector(".si");
+  items.forEach(item=>{
+    total++;
+    const el=document.createElement("div");
+    el.className="sit";
+    el.innerHTML=`<div class="sc"><span class="sci">✓</span></div><div style="flex:1;min-width:0;"><div class="in">${item.name}</div><div class="iu">${item.use}</div></div><div class="iq">${item.qty}</div>`;
+    el.onclick=()=>{const c=el.classList.toggle("checked");checked+=c?1:-1;upd();};
+    si.appendChild(el);
   });
 });
 
-function updateProgress() {
-  const pct = totalItems > 0 ? Math.round((checkedItems / totalItems) * 100) : 0;
-  document.getElementById("prog-fill").style.width = pct + "%";
-  document.getElementById("prog-text").textContent = checkedItems + " / " + totalItems;
+function upd(){
+  const p=total>0?Math.round(checked/total*100):0;
+  document.getElementById("pf").style.width=p+"%";
+  document.getElementById("pt").textContent=checked+" / "+total;
 }
-updateProgress();
+upd();
 
-// Tabs
-function showPanel(id) {
-  document.querySelectorAll(".panel").forEach(p => p.classList.remove("active"));
-  document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
-  document.getElementById("panel-" + id).classList.add("active");
-  const tabs = { week: 0, shop: 1, info: 2 };
-  document.querySelectorAll(".tab")[tabs[id]].classList.add("active");
+function showPanel(id){
+  document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+  document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+  document.getElementById("panel-"+id).classList.add("active");
+  const idx={week:0,shop:1,info:2};
+  document.querySelectorAll(".tab")[idx[id]].classList.add("active");
 }
 
-// Open first card by default
-toggleDay(0);
+tog(0);
 </script>
 </body>
 </html>
