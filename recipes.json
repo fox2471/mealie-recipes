@@ -1,5 +1,15 @@
 [
   {
+    "title": "Weekmenu 1",
+    "file": "week1.html",
+    "emoji": "🍽️"
+  },
+  {
+    "title": "weekmenu 2",
+    "file": "week2.html",
+    "emoji": "🍽️"
+  },
+  {
     "title": "Gegrilde Kip met Avocadosalsa",
     "file": "Gegrilde Kip met Avocadosalsa.html",
     "emoji": "🥑"
