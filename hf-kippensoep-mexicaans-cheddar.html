@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Kippensoep met Mexicaanse kruiden en cheddar</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ld+json structured data voor Mealie -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "name": "Kippensoep met Mexicaanse kruiden en cheddar",
+  "description": "Met krokante tortillareepjes en roomkaas",
+  "author": {
+    "@type": "Organization",
+    "name": "Gebaseerd op HelloFresh"
+  },
+  "totalTime": "PT20M",
+  "recipeYield": "2 porties",
+  "recipeCategory": "Diner",
+  "recipeCuisine": "Mexicaans",
+  "keywords": "hellofresh, caloriebewust",
+  "image": "https://raw.githubusercontent.com/fox2471/mealie-recipes/main/fotos/hf-kippensoep-mexicaans-cheddar.jpg",
+  "nutrition": {
+    "@type": "NutritionInformation",
+    "calories": "642 kcal"
+  },
+  "recipeIngredient": [
+    "200 g kipfilet of kippendijreepjes",
+    "1 ui",
+    "1 teentje knoflook",
+    "1 paprika",
+    "1 zakje Mexicaanse kruiden",
+    "200 g passata",
+    "140 g mais (blik)",
+    "600 ml kippen- of groentebouillon",
+    "2 kleine tortilla’s",
+    "40 g roomkaas",
+    "40 g geraspte cheddar",
+    "5 g verse koriander (optioneel)",
+    "1 el olijfolie",
+    "Peper en zout"
+  ],
+  "recipeInstructions": [
+    {
+      "@type": "HowToStep",
+      "text": "Verwarm de oven voor op 200 °C. Snijd de tortilla’s in reepjes, besprenkel met een beetje olie en bak ze 6–8 minuten krokant."
+    },
+    {
+      "@type": "HowToStep",
+      "text": "Snipper ui en knoflook, snijd de paprika in blokjes."
+    },
+    {
+      "@type": "HowToStep",
+      "text": "Bak de kip 3–4 minuten in de rest van de olie in een soeppan. Voeg ui, knoflook, paprika en de Mexicaanse kruiden toe en bak nog 2 minuten."
+    },
+    {
+      "@type": "HowToStep",
+      "text": "Voeg passata en bouillon toe, breng aan de kook en laat 8–10 minuten zachtjes koken. Roer de uitgelekte mais erdoor en breng op smaak."
+    },
+    {
+      "@type": "HowToStep",
+      "text": "Roer de roomkaas door de soep tot hij romig is."
+    },
+    {
+      "@type": "HowToStep",
+      "text": "Schep de soep in kommen en werk af met de cheddar, de tortillareepjes en eventueel koriander."
+    }
+  ]
+}
+  </script>
+
+  <style>
+    body { font-family: "Segoe UI", sans-serif; max-width: 700px; margin: 2rem auto; padding: 1rem; line-height: 1.6; color: #333; }
+    .back { color: #007acc; text-decoration: none; }
+    h1 { font-size: 2em; margin: 1rem 0 0.25rem; }
+    .sub { color: #666; margin-top: 0; }
+    .meta { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.75rem 0 1rem; font-size: 0.9em; }
+    .meta span { background: #eef3e2; color: #3d5e00; border-radius: 6px; padding: 0.15rem 0.55rem; }
+    .meta span.kcal { background: #91c11e; color: #fff; font-weight: 600; }
+    ul, ol { margin-left: 1.5rem; }
+    ol li { margin-bottom: 0.5rem; }
+    .nutrition { background: #f8f8f8; padding: 1rem; border-left: 5px solid #91c11e; margin: 1rem 0; }
+    .note { color: #777; font-size: 0.9em; font-style: italic; }
+    .foto { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 12px; margin: 0.5rem 0 1rem; display: block; }
+    .portions { display: flex; align-items: center; gap: 0.75rem; background: #f3f9e6; border-radius: 10px; padding: 0.6rem 1rem; margin: 0.5rem 0 1rem; }
+    .portions input { flex: 1; accent-color: #91c11e; }
+    .portions output { font-weight: 600; min-width: 6.5em; text-align: right; }
+  </style>
+</head>
+<body>
+  <a class="back" href="hellofresh.html">← Terug naar HelloFresh-recepten</a>
+  <h1>🍲 Kippensoep met Mexicaanse kruiden en cheddar</h1>
+  <p class="sub">Met krokante tortillareepjes en roomkaas</p>
+  <img class="foto" src="fotos/hf-kippensoep-mexicaans-cheddar.jpg" alt="Kippensoep met Mexicaanse kruiden en cheddar" onerror="this.remove()">
+  <div class="meta">
+    <span class="kcal">642 kcal</span><span>⏱️ 20 min</span><span>Gemakkelijk</span>
+  </div>
+
+  <h2>Ingrediënten</h2>
+  <div class="portions">
+    <label for="porties">Porties</label>
+    <input type="range" id="porties" min="1" max="6" step="1" value="2">
+    <output id="porties-out" for="porties">2 porties</output>
+  </div>
+  <ul id="ingredienten">
+    <li data-base="200 g kipfilet of kippendijreepjes">200 g kipfilet of kippendijreepjes</li>
+    <li data-base="1 ui">1 ui</li>
+    <li data-base="1 teentje knoflook">1 teentje knoflook</li>
+    <li data-base="1 paprika">1 paprika</li>
+    <li data-base="1 zakje Mexicaanse kruiden">1 zakje Mexicaanse kruiden</li>
+    <li data-base="200 g passata">200 g passata</li>
+    <li data-base="140 g mais (blik)">140 g mais (blik)</li>
+    <li data-base="600 ml kippen- of groentebouillon">600 ml kippen- of groentebouillon</li>
+    <li data-base="2 kleine tortilla’s">2 kleine tortilla’s</li>
+    <li data-base="40 g roomkaas">40 g roomkaas</li>
+    <li data-base="40 g geraspte cheddar">40 g geraspte cheddar</li>
+    <li data-base="5 g verse koriander (optioneel)">5 g verse koriander (optioneel)</li>
+    <li data-base="1 el olijfolie">1 el olijfolie</li>
+    <li data-base="Peper en zout">Peper en zout</li>
+  </ul>
+
+  <h2>Bereidingswijze</h2>
+  <ol>
+    <li>Verwarm de oven voor op 200 °C. Snijd de tortilla’s in reepjes, besprenkel met een beetje olie en bak ze 6–8 minuten krokant.</li>
+    <li>Snipper ui en knoflook, snijd de paprika in blokjes.</li>
+    <li>Bak de kip 3–4 minuten in de rest van de olie in een soeppan. Voeg ui, knoflook, paprika en de Mexicaanse kruiden toe en bak nog 2 minuten.</li>
+    <li>Voeg passata en bouillon toe, breng aan de kook en laat 8–10 minuten zachtjes koken. Roer de uitgelekte mais erdoor en breng op smaak.</li>
+    <li>Roer de roomkaas door de soep tot hij romig is.</li>
+    <li>Schep de soep in kommen en werk af met de cheddar, de tortillareepjes en eventueel koriander.</li>
+  </ol>
+
+  <div class="nutrition">
+    <strong>Voedingswaarden (per portie):</strong><br>
+    Calorieën: 642 kcal
+  </div>
+
+  <p class="note">Gebaseerd op het gelijknamige HelloFresh-recept. Hoeveelheden en bereiding zijn zelf uitgewerkt en kunnen afwijken van het origineel. Voedingswaarden gelden per portie.</p>
+
+  <script>
+
+    (function () {
+      const BASE = 2;
+      const FRAC = { '½': 0.5, '¼': 0.25, '¾': 0.75, '⅓': 1/3, '⅔': 2/3 };
+      const NICE = [[0.25,'¼'],[1/3,'⅓'],[0.5,'½'],[2/3,'⅔'],[0.75,'¾']];
+      function parse(tok) {
+        const m = tok.match(/^(\d+(?:[.,]\d+)?)?([½¼¾⅓⅔])?$/);
+        if (!m) return null;
+        return (m[1] ? parseFloat(m[1].replace(',', '.')) : 0) + (m[2] ? FRAC[m[2]] : 0);
+      }
+      function fmt(v) {
+        const whole = Math.floor(v + 1e-9), rest = v - whole;
+        if (rest < 0.05) return String(whole);
+        for (const [f, sym] of NICE) if (Math.abs(rest - f) < 0.05) return (whole ? whole : '') + sym;
+        const r = v >= 10 ? Math.round(v) : Math.round(v * 10) / 10;
+        return String(r).replace('.', ',');
+      }
+      function scale(text, factor) {
+        return text.replace(/\d+(?:[.,]\d+)?[½¼¾⅓⅔]?|[½¼¾⅓⅔]/g, tok => {
+          const v = parse(tok);
+          return v === null ? tok : fmt(v * factor);
+        });
+      }
+      const slider = document.getElementById('porties');
+      const out = document.getElementById('porties-out');
+      const items = document.querySelectorAll('#ingredienten li');
+      function update() {
+        const n = parseInt(slider.value, 10);
+        out.textContent = n + (n === 1 ? ' portie' : ' porties');
+        items.forEach(li => { li.textContent = scale(li.dataset.base, n / BASE); });
+      }
+      slider.addEventListener('input', update);
+      update();
+    })();
+  </script>
+</body>
+</html>

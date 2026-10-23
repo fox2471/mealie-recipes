@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Steak met zhough en aubergine</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ld+json structured data voor Mealie -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "name": "Steak met zhough en aubergine",
+  "description": "Met patatjes en kerstomaten",
+  "author": {
+    "@type": "Organization",
+    "name": "Gebaseerd op HelloFresh"
+  },
+  "totalTime": "PT10M",
+  "recipeYield": "2 porties",
+  "recipeCategory": "Diner",
+  "recipeCuisine": "Midden-Oosters",
+  "keywords": "hellofresh, caloriebewust, caloriebewust, eiwitrijk, -30% koolhydraten, met microgolf",
+  "image": "https://raw.githubusercontent.com/fox2471/mealie-recipes/main/fotos/hf-steak-zhough-aubergine.jpg",
+  "nutrition": {
+    "@type": "NutritionInformation",
+    "calories": "618 kcal",
+    "proteinContent": "31.1 g"
+  },
+  "recipeIngredient": [
+    "2 (gemarineerde) steaks",
+    "50 g zhoug (groene pittige kruidensaus)",
+    "400 g aardappelen",
+    "1 zakje Midden-Oosterse kruidenmix",
+    "1 aubergine",
+    "130 g rode kerstomaten",
+    "1 teentje knoflook",
+    "3 tl paprikapoeder",
+    "1 rode ui",
+    "2 el olijfolie",
+    "1½ el boter",
+    "50 ml water",
+    "Mayonaise naar smaak",
+    "Peper en zout"
+  ],
+  "recipeInstructions": [
+    {
+      "@type": "HowToStep",
+      "text": "Haal de steaks uit de koelkast zodat ze op kamertemperatuur komen."
+    },
+    {
+      "@type": "HowToStep",
+      "text": "Snijd de aardappelen in kleine stukjes, meng met het paprikapoeder en een beetje olie, dek af en gaar ze 8–10 minuten in de microgolf. Bak ze daarna kort krokant in een pan."
+    },
+    {
+      "@type": "HowToStep",
+      "text": "Snijd de aubergine in dunne halve maantjes en bak ze in een flinke scheut olijfolie op hoog vuur. Snijd ondertussen ui en knoflook fijn en halveer de tomaatjes."
+    },
+    {
+      "@type": "HowToStep",
+      "text": "Bak de steaks in de boter 1–3 minuten per kant (naar wens rosé of doorbakken) en laat ze even rusten onder folie."
+    },
+    {
+      "@type": "HowToStep",
+      "text": "Zet het vuur onder de aubergine middelhoog en voeg knoflook, ui, tomaatjes, de kruidenmix en het water toe. Laat 2–3 minuten stoven en breng op smaak."
+    },
+    {
+      "@type": "HowToStep",
+      "text": "Serveer de patatjes met de groenten en de steak; schep de zhoug over het vlees (pikant!) en geef er eventueel mayonaise bij."
+    }
+  ]
+}
+  </script>
+
+  <style>
+    body { font-family: "Segoe UI", sans-serif; max-width: 700px; margin: 2rem auto; padding: 1rem; line-height: 1.6; color: #333; }
+    .back { color: #007acc; text-decoration: none; }
+    h1 { font-size: 2em; margin: 1rem 0 0.25rem; }
+    .sub { color: #666; margin-top: 0; }
+    .meta { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.75rem 0 1rem; font-size: 0.9em; }
+    .meta span { background: #eef3e2; color: #3d5e00; border-radius: 6px; padding: 0.15rem 0.55rem; }
+    .meta span.kcal { background: #91c11e; color: #fff; font-weight: 600; }
+    ul, ol { margin-left: 1.5rem; }
+    ol li { margin-bottom: 0.5rem; }
+    .nutrition { background: #f8f8f8; padding: 1rem; border-left: 5px solid #91c11e; margin: 1rem 0; }
+    .note { color: #777; font-size: 0.9em; font-style: italic; }
+    .foto { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 12px; margin: 0.5rem 0 1rem; display: block; }
+    .portions { display: flex; align-items: center; gap: 0.75rem; background: #f3f9e6; border-radius: 10px; padding: 0.6rem 1rem; margin: 0.5rem 0 1rem; }
+    .portions input { flex: 1; accent-color: #91c11e; }
+    .portions output { font-weight: 600; min-width: 6.5em; text-align: right; }
+  </style>
+</head>
+<body>
+  <a class="back" href="hellofresh.html">← Terug naar HelloFresh-recepten</a>
+  <h1>🥩 Steak met zhough en aubergine</h1>
+  <p class="sub">Met patatjes en kerstomaten</p>
+  <img class="foto" src="fotos/hf-steak-zhough-aubergine.jpg" alt="Steak met zhough en aubergine" onerror="this.remove()">
+  <div class="meta">
+    <span class="kcal">618 kcal</span><span>⏱️ 10 min</span><span>Gemakkelijk</span><span>Caloriebewust</span><span>Eiwitrijk</span><span>-30% koolhydraten</span><span>Met microgolf</span>
+  </div>
+
+  <h2>Ingrediënten</h2>
+  <div class="portions">
+    <label for="porties">Porties</label>
+    <input type="range" id="porties" min="1" max="6" step="1" value="2">
+    <output id="porties-out" for="porties">2 porties</output>
+  </div>
+  <ul id="ingredienten">
+    <li data-base="2 (gemarineerde) steaks">2 (gemarineerde) steaks</li>
+    <li data-base="50 g zhoug (groene pittige kruidensaus)">50 g zhoug (groene pittige kruidensaus)</li>
+    <li data-base="400 g aardappelen">400 g aardappelen</li>
+    <li data-base="1 zakje Midden-Oosterse kruidenmix">1 zakje Midden-Oosterse kruidenmix</li>
+    <li data-base="1 aubergine">1 aubergine</li>
+    <li data-base="130 g rode kerstomaten">130 g rode kerstomaten</li>
+    <li data-base="1 teentje knoflook">1 teentje knoflook</li>
+    <li data-base="3 tl paprikapoeder">3 tl paprikapoeder</li>
+    <li data-base="1 rode ui">1 rode ui</li>
+    <li data-base="2 el olijfolie">2 el olijfolie</li>
+    <li data-base="1½ el boter">1½ el boter</li>
+    <li data-base="50 ml water">50 ml water</li>
+    <li data-base="Mayonaise naar smaak">Mayonaise naar smaak</li>
+    <li data-base="Peper en zout">Peper en zout</li>
+  </ul>
+
+  <h2>Bereidingswijze</h2>
+  <ol>
+    <li>Haal de steaks uit de koelkast zodat ze op kamertemperatuur komen.</li>
+    <li>Snijd de aardappelen in kleine stukjes, meng met het paprikapoeder en een beetje olie, dek af en gaar ze 8–10 minuten in de microgolf. Bak ze daarna kort krokant in een pan.</li>
+    <li>Snijd de aubergine in dunne halve maantjes en bak ze in een flinke scheut olijfolie op hoog vuur. Snijd ondertussen ui en knoflook fijn en halveer de tomaatjes.</li>
+    <li>Bak de steaks in de boter 1–3 minuten per kant (naar wens rosé of doorbakken) en laat ze even rusten onder folie.</li>
+    <li>Zet het vuur onder de aubergine middelhoog en voeg knoflook, ui, tomaatjes, de kruidenmix en het water toe. Laat 2–3 minuten stoven en breng op smaak.</li>
+    <li>Serveer de patatjes met de groenten en de steak; schep de zhoug over het vlees (pikant!) en geef er eventueel mayonaise bij.</li>
+  </ol>
+
+  <div class="nutrition">
+    <strong>Voedingswaarden (per portie):</strong><br>
+    Calorieën: 618 kcal<br>Eiwitten: 31.1 g
+  </div>
+
+  <p class="note">Bron: HelloFresh (caloriebewuste recepten). Hoeveelheden omgerekend naar 2 personen, bereiding in eigen woorden. Voedingswaarden gelden per portie.</p>
+
+  <script>
+
+    (function () {
+      const BASE = 2;
+      const FRAC = { '½': 0.5, '¼': 0.25, '¾': 0.75, '⅓': 1/3, '⅔': 2/3 };
+      const NICE = [[0.25,'¼'],[1/3,'⅓'],[0.5,'½'],[2/3,'⅔'],[0.75,'¾']];
+      function parse(tok) {
+        const m = tok.match(/^(\d+(?:[.,]\d+)?)?([½¼¾⅓⅔])?$/);
+        if (!m) return null;
+        return (m[1] ? parseFloat(m[1].replace(',', '.')) : 0) + (m[2] ? FRAC[m[2]] : 0);
+      }
+      function fmt(v) {
+        const whole = Math.floor(v + 1e-9), rest = v - whole;
+        if (rest < 0.05) return String(whole);
+        for (const [f, sym] of NICE) if (Math.abs(rest - f) < 0.05) return (whole ? whole : '') + sym;
+        const r = v >= 10 ? Math.round(v) : Math.round(v * 10) / 10;
+        return String(r).replace('.', ',');
+      }
+      function scale(text, factor) {
+        return text.replace(/\d+(?:[.,]\d+)?[½¼¾⅓⅔]?|[½¼¾⅓⅔]/g, tok => {
+          const v = parse(tok);
+          return v === null ? tok : fmt(v * factor);
+        });
+      }
+      const slider = document.getElementById('porties');
+      const out = document.getElementById('porties-out');
+      const items = document.querySelectorAll('#ingredienten li');
+      function update() {
+        const n = parseInt(slider.value, 10);
+        out.textContent = n + (n === 1 ? ' portie' : ' porties');
+        items.forEach(li => { li.textContent = scale(li.dataset.base, n / BASE); });
+      }
+      slider.addEventListener('input', update);
+      update();
+    })();
+  </script>
+</body>
+</html>

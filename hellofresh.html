@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>🥗 HelloFresh – Caloriebewust</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+    .back {
+      color: #007acc;
+      text-decoration: none;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.2em;
+      margin: 1rem 0 0.25rem;
+    }
+    .intro {
+      text-align: center;
+      color: #666;
+      margin: 0 0 1.5rem;
+    }
+    .intro a { color: #5a8a00; }
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .filters button {
+      font: inherit;
+      border: 1px solid #91c11e;
+      background: #fff;
+      color: #3d5e00;
+      border-radius: 999px;
+      padding: 0.35rem 0.9rem;
+      cursor: pointer;
+    }
+    .filters button.active {
+      background: #91c11e;
+      color: #fff;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      background: white;
+      margin: 0.5rem 0;
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+    li:hover { background-color: #f3f9e6; }
+    .emoji { font-size: 1.6em; line-height: 1; width: 64px; text-align: center; flex-shrink: 0; }
+    .thumb { width: 64px; height: 64px; object-fit: cover; border-radius: 8px; flex-shrink: 0; }
+    .body { flex: 1; min-width: 0; }
+    li a {
+      text-decoration: none;
+      color: #007acc;
+      font-size: 1.15em;
+      font-weight: 600;
+    }
+    .sub { color: #666; margin: 0.2rem 0 0.5rem; font-size: 0.95em; }
+    .meta { display: flex; flex-wrap: wrap; gap: 0.4rem; font-size: 0.85em; }
+    .meta span {
+      background: #eef3e2;
+      color: #3d5e00;
+      border-radius: 6px;
+      padding: 0.15rem 0.5rem;
+    }
+    .meta span.kcal { background: #91c11e; color: #fff; font-weight: 600; }
+    .note { text-align: center; color: #888; font-size: 0.85em; margin-top: 2rem; }
+  </style>
+</head>
+<body>
+  <a class="back" href="index.html">← Terug naar mijn recepten</a>
+  <h1>🥗 HelloFresh – Caloriebewust</h1>
+  <p class="intro">Evenwichtige maaltijden onder 700 kcal. Bron: HelloFresh.</p>
+
+  <div class="filters" id="filters">
+    <button class="active" data-filter="all">Alles</button>
+    <button data-filter="veggie">Veggie</button>
+    <button data-filter="eiwitrijk">Eiwitrijk</button>
+    <button data-filter="lowcarb">-30% koolhydraten</button>
+    <button data-filter="snel">Snel (≤ 15 min)</button>
+  </div>
+
+  <ul id="hf-list"></ul>
+
+  <p class="note">Recepten gebaseerd op het HelloFresh-aanbod van oktober 2026, omgerekend naar 2 personen.</p>
+
+  <script>
+    const recipes = [
+     {
+      "e": "🧀",
+      "t": "Geitenkaas op linzensalade met cranberrydressing",
+      "s": "Met gezouten amandelen, zoetzure ui en geroosterde zoete aardappel",
+      "tags": [
+       "Caloriebewust",
+       "Veggie"
+      ],
+      "min": 25,
+      "lvl": "Gemakkelijk",
+      "kcal": 635,
+      "f": "hf-geitenkaas-linzensalade-cranberry.html"
+     },
+     {
+      "e": "🍜",
+      "t": "Sweet en sticky noedels met spiegelei en gomasio",
+      "s": "Met peultjes, zoete Aziatische saus en limoen",
+      "tags": [
+       "Vegetarisch"
+      ],
+      "min": 15,
+      "lvl": "Gemakkelijk",
+      "kcal": 574,
+      "f": "hf-sweet-sticky-noedels-spiegelei.html"
+     },
+     {
+      "e": "🍄",
+      "t": "Umami stir-fry met champignons en spruitjes",
+      "s": "Met rijst, pinda’s, zoete Aziatische saus en koriander",
+      "tags": [
+       "Caloriebewust",
+       "Plantaardig"
+      ],
+      "min": 25,
+      "lvl": "Gemakkelijk",
+      "kcal": 579,
+      "f": "hf-umami-stirfry-champignons-spruitjes.html"
+     },
+     {
+      "e": "🍄",
+      "t": "Zwarteknoflookchampignons met feta en knolselder",
+      "s": "Met aardappelpuree, walnoten en peterselie",
+      "tags": [
+       "Caloriebewust",
+       "Veggie",
+       "Extra groente"
+      ],
+      "min": 25,
+      "lvl": "Gemakkelijk",
+      "kcal": 630,
+      "f": "hf-zwarteknoflookchampignons-feta-knolselder.html"
+     },
+     {
+      "e": "🥩",
+      "t": "Hoisin biefstukreepjes met groene groenten",
+      "s": "Met gomasiorijst en gezouten pinda’s",
+      "tags": [
+       "Caloriebewust",
+       "Eiwitrijk"
+      ],
+      "min": 15,
+      "lvl": "Gemakkelijk",
+      "kcal": 639,
+      "f": "hf-hoisin-biefstukreepjes-groene-groenten.html"
+     },
+     {
+      "e": "🍠",
+      "t": "Geroosterde zoete-aardappelbowl met biefstukreepjes op z’n Mexicaans",
+      "s": "Met avocado en tomatensalsa",
+      "tags": [
+       "Caloriebewust"
+      ],
+      "min": 30,
+      "lvl": "Gemakkelijk",
+      "kcal": 649,
+      "f": "hf-zoete-aardappelbowl-biefstuk-mexicaans.html"
+     },
+     {
+      "e": "🥗",
+      "t": "Noedelsalade met biefstukreepjes, pinda’s en verse kruiden",
+      "s": "Met Vietnamese saus en gebakken radijsjes",
+      "tags": [
+       "Eiwitrijk",
+       "Caloriebewust"
+      ],
+      "min": 20,
+      "lvl": "Gemakkelijk",
+      "kcal": 582,
+      "f": "hf-noedelsalade-biefstuk-vietnamees.html"
+     },
+     {
+      "e": "🍫",
+      "t": "Chocolade moelleux met mascarpone",
+      "s": "Met zelfgemaakte aardbeiensaus, amandelschaafsel en limoen",
+      "tags": [
+       "Veggie",
+       "Dessert"
+      ],
+      "min": 20,
+      "lvl": "Gemakkelijk",
+      "kcal": 521,
+      "f": "hf-chocolade-moelleux-mascarpone.html"
+     },
+     {
+      "e": "🥚",
+      "t": "Witte asperges met ontbijtspek en gepocheerde eieren",
+      "s": "Met patatjes en peterselie-botersaus",
+      "tags": [
+       "Caloriebewust",
+       "Familie",
+       "-30% koolhydraten"
+      ],
+      "min": 35,
+      "lvl": "Gemiddeld",
+      "kcal": 636,
+      "f": "hf-witte-asperges-ontbijtspek-gepocheerd-ei.html"
+     },
+     {
+      "e": "🍲",
+      "t": "Kippensoep met Mexicaanse kruiden en cheddar",
+      "s": "Met krokante tortillareepjes en roomkaas",
+      "tags": [],
+      "min": 20,
+      "lvl": "Gemakkelijk",
+      "kcal": 642,
+      "f": "hf-kippensoep-mexicaans-cheddar.html"
+     },
+     {
+      "e": "🥩",
+      "t": "Steak met zhough en aubergine",
+      "s": "Met patatjes en kerstomaten",
+      "tags": [
+       "Caloriebewust",
+       "Eiwitrijk",
+       "-30% koolhydraten",
+       "Met microgolf"
+      ],
+      "min": 10,
+      "lvl": "Gemakkelijk",
+      "kcal": 618,
+      "f": "hf-steak-zhough-aubergine.html"
+     },
+     {
+      "e": "🌶️",
+      "t": "Pikante chipotle kippensoep",
+      "s": "Met zure room, zoete aardappel, mais en koriander",
+      "tags": [
+       "Caloriebewust",
+       "Met microgolf"
+      ],
+      "min": 10,
+      "lvl": "Gemakkelijk",
+      "kcal": 589,
+      "f": "hf-pikante-chipotle-kippensoep.html"
+     },
+     {
+      "e": "🐟",
+      "t": "Pangasiusfilet in saliebotersaus",
+      "s": "Met curry-patatjes, courgette en wortel",
+      "tags": [
+       "Caloriebewust",
+       "Extra groente"
+      ],
+      "min": 45,
+      "lvl": "Gemiddeld",
+      "kcal": 620,
+      "f": "hf-pangasiusfilet-saliebotersaus.html"
+     },
+     {
+      "e": "🥔",
+      "t": "Loaded patatjes met witte kaas, olijven en yoghurtsaus",
+      "s": "Met basilicumcrème, peterselie, courgette en tomaat",
+      "tags": [
+       "Caloriebewust",
+       "Veggie",
+       "-30% koolhydraten"
+      ],
+      "min": 10,
+      "lvl": "Gemakkelijk",
+      "kcal": 589,
+      "f": "hf-loaded-patatjes-witte-kaas-olijven.html"
+     },
+     {
+      "e": "🥩",
+      "t": "Biefstukreepjes à la lomo saltado met frietjes",
+      "s": "Peruaanse klassieker, met tomaat, peterselie en paprika",
+      "tags": [
+       "Caloriebewust",
+       "Familie",
+       "Eiwitrijk"
+      ],
+      "min": 30,
+      "lvl": "Gemakkelijk",
+      "kcal": 585,
+      "f": "hf-lomo-saltado-biefstukreepjes-frietjes.html"
+     },
+     {
+      "e": "🦐",
+      "t": "Luxe noedelsalade met garnalen en broccolini",
+      "s": "Met sticky appelsiensaus en pinda’s",
+      "tags": [
+       "Caloriebewust",
+       "Extra groente",
+       "Eiwitrijk"
+      ],
+      "min": 30,
+      "lvl": "Gemakkelijk",
+      "kcal": 648,
+      "f": "hf-luxe-noedelsalade-garnalen-broccolini.html"
+     }
+    ];
+
+    const matches = {
+      all: () => true,
+      veggie: r => r.tags.some(t => ['Veggie','Vegetarisch','Plantaardig'].includes(t)),
+      eiwitrijk: r => r.tags.includes('Eiwitrijk'),
+      lowcarb: r => r.tags.includes('-30% koolhydraten'),
+      snel: r => r.min <= 15
+    };
+
+    function render(filter) {
+      const list = document.getElementById('hf-list');
+      list.innerHTML = '';
+      recipes.filter(matches[filter])
+        .sort((a, b) => a.kcal - b.kcal)
+        .forEach(r => {
+          const li = document.createElement('li');
+          li.innerHTML = `
+            <img class="thumb" src="fotos/${r.f.replace('.html', '.jpg')}" alt="" loading="lazy">
+            <div class="body">
+              <a href="${r.f}"></a>
+              <p class="sub"></p>
+              <div class="meta">
+                <span class="kcal">${r.kcal} kcal</span>
+                <span>⏱️ ${r.min} min</span>
+                <span>${r.lvl}</span>
+                ${r.tags.map(t => `<span>${t}</span>`).join('')}
+              </div>
+            </div>`;
+          li.querySelector('img.thumb').addEventListener('error', ev => {
+            const span = document.createElement('span');
+            span.className = 'emoji';
+            span.textContent = r.e;
+            ev.target.replaceWith(span);
+          });
+          li.querySelector('a').textContent = r.t;
+          li.querySelector('.sub').textContent = r.s;
+          list.appendChild(li);
+        });
+    }
+
+    document.getElementById('filters').addEventListener('click', ev => {
+      const btn = ev.target.closest('button');
+      if (!btn) return;
+      document.querySelectorAll('#filters button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      render(btn.dataset.filter);
+    });
+
+    render('all');
+  </script>
+</body>
+</html>
